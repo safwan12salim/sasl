@@ -4,36 +4,44 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import Logo from './Logo';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Mail, Lock, LogIn, ArrowRight } from 'lucide-react';
 
 export default function Login() {
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // ✅ Redirect when user is available
+  React.useEffect(() => {
+  if (user) {
+    const onboarded = localStorage.getItem('sasl_onboarded');
+    setTimeout(() => {
+      window.location.href = onboarded ? '/' : '/onboarding';
+    }, 100);
+  }
+}, [user]);
+
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !password) return toast.error(t('fill_all_fields'));
-    setLoading(true);
-    try {
-      await login(email, password);
-      toast.success(t('welcome_back'));
-      const onboarded = localStorage.getItem('sasl_onboarded');
-      navigate(onboarded ? '/' : '/onboarding');
-    } catch (err: any) {
-      toast.error(err.response?.data?.detail || t('login_error'));
-    } finally {
-      setLoading(false);
-    }
-  };
+  e.preventDefault();
+  if (!email || !password) return toast.error(t('fill_all_fields'));
+  setLoading(true);
+  try {
+    await login(email, password);
+    const onboarded = localStorage.getItem('sasl_onboarded');
+    navigate(onboarded ? '/' : '/onboarding', { replace: true });
+  } catch (err: any) {
+    toast.error(err.message || 'Login failed');
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-4 relative overflow-hidden">
-      {/* Animated background circles */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-green-500/20 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" />
 

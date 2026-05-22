@@ -163,7 +163,16 @@ class ProductViewSet(viewsets.ModelViewSet):
         
         return Response(ProductSerializer(qs, many=True, context={'request': request}).data)
 
-
+    @action(detail=True, methods=['post'])
+    def toggle_wishlist(self, request, pk=None):
+     product = self.get_object()
+     wishlist_item, created = Wishlist.objects.get_or_create(
+        user=request.user, product=product
+     )
+     if not created:
+        wishlist_item.delete()
+        return Response({'status': 'removed'})
+     return Response({'status': 'added'})
 class WishlistViewSet(viewsets.ModelViewSet):
     serializer_class = WishlistSerializer
     permission_classes = [permissions.IsAuthenticated]

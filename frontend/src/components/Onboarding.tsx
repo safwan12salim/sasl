@@ -13,6 +13,7 @@ import {
   Heart, Star, ChevronRight, ArrowRight, Play
 } from 'lucide-react';
 
+
 const steps = [
   {
     id: 'offline',
@@ -105,10 +106,10 @@ export default function Onboarding() {
     }
   };
 
-  const handleFinish = () => {
-    localStorage.setItem('sasl_onboarded', 'true');
-    navigate('/');
-  };
+const handleFinish = () => {
+  localStorage.setItem('sasl_onboarded', 'true');
+  navigate('/', { replace: true });
+};
 
   const handleSkip = () => {
     handleFinish();

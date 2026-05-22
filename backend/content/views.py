@@ -59,24 +59,35 @@ class PostViewSet(viewsets.ModelViewSet):
     ordering_fields = ['created_at', 'likes_count', 'comments_count']
     ordering = ['-created_at']
     pagination_class = SafeFeedPagination
+    
+
 
     def get_queryset(self):
-     qs = super().get_queryset().filter(is_hidden=False)
-     user = self.request.user
-     if self.action in ['list', 'feed', 'trending']:
-         if user.is_authenticated:
-             following_ids = user.following.values_list('following_id', flat=True)
-             threshold = timezone.now() - timedelta(days=7)
-             qs = qs.filter(
-                 Q(author_id__in=following_ids) |
-                 Q(created_at__gte=threshold, likes_count__gte=5)
-             ).distinct()
-         qs = qs.order_by('-created_at')
-     elif self.action == 'my_posts':
-         qs = qs.filter(author=user)
-     elif self.action == 'reported' and user.is_staff:
-         qs = qs.filter(is_reported=True)
-     return qs
+      qs = Post.objects.select_related('author').prefetch_related(
+        'comments', 'likes',
+        Prefetch('poll', queryset=Poll.objects.prefetch_related('options'))
+      ).filter(is_hidden=False)
+    
+      user = self.request.user
+    
+      if self.action in ['list', 'feed', 'trending']:
+        if user.is_authenticated:
+            following_ids = list(user.following.values_list('following_id', flat=True))
+            # Always include user's own posts
+            qs = qs.filter(
+                Q(author=user) |
+                Q(author_id__in=following_ids) |
+                Q(likes_count__gte=5)
+            ).distinct()
+        qs = qs.order_by('-created_at')
+      elif self.action == 'my_posts':
+        qs = qs.filter(author=user).order_by('-created_at')
+      elif self.action == 'reported' and user.is_staff:
+        qs = qs.filter(is_reported=True).order_by('-created_at')
+      else:
+        qs = qs.order_by('-created_at')
+    
+      return qs
     @action(detail=False, methods=['get'])
     def trending(self, request):
         cache_key = 'trending_posts_global'

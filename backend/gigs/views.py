@@ -90,11 +90,19 @@ class GigViewSet(viewsets.ModelViewSet):
         success = process_marketplace_purchase(gig.creator, request.user, gig.budget, gig.title)
         if not success:
             return Response({'error': 'Payment failed'}, status=402)
+        
+
+        SkillBadge.objects.get_or_create(
+    user=request.user,
+    name=gig.category or 'General',
+    defaults={'level': 'beginner'}
+)   
 
         with transaction.atomic():
             gig.status = 'completed'
             gig.save()
-            
+
+
             create_notification(
                 recipient=gig.creator,
                 actor=request.user,

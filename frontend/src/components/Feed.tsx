@@ -108,6 +108,7 @@ const Feed: React.FC = () => {
           created_at: p.created_at,
           poll: undefined,
         }));
+
         setPosts(mapped);
         setHasMore(false);
         return;
@@ -151,10 +152,13 @@ const Feed: React.FC = () => {
       }
 
       // Check if more pages exist
-      setHasMore(!!data?.next && results.length > 0);
+            // Check if more pages exist — FIXED
+      const nextPage = data?.next;
+      const currentPageSize = results.length;
+      setHasMore(!!nextPage && currentPageSize > 0);
     } catch (err) {
       if (!append && initialLoad) {
-        toast.error('Failed to load feed');
+         console.warn('Feed fetch failed:', err);
       }
     } finally {
       setLoading(false);
@@ -166,13 +170,25 @@ const Feed: React.FC = () => {
   // ============================================================
   // INITIAL LOAD
   // ============================================================
-  useEffect(() => {
+  
+
+     useEffect(() => {
+  // Ensure token is available before fetching
+  const token = localStorage.getItem('sasl_token');
+  if (token) {
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+  
+  // Small delay to ensure everything is ready
+  const timer = setTimeout(() => {
     fetchPosts(1, false);
     loadStories();
     loadSuggestedUsers();
     loadOfflineQueue();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, 100);
+  
+  return () => clearTimeout(timer);
+}, []);
 
   // ============================================================
   // INFINITE SCROLL OBSERVER - Fixed
@@ -180,10 +196,15 @@ const Feed: React.FC = () => {
   useEffect(() => {
     if (!loader.current) return;
     
-    const observer = new IntersectionObserver(entries => {
+         const observer = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting && hasMore && !loading && !isFetching.current) {
         setPage(prev => {
           const nextPage = prev + 1;
+          // Safety cap — stop after 50 pages
+          if (nextPage > 50) {
+            setHasMore(false);
+            return prev;
+          }
           fetchPosts(nextPage, true);
           return nextPage;
         });

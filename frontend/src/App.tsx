@@ -36,10 +36,13 @@ import SaslAIHub from './components/SaslAIHub';
 import AdvertisePage from './components/AdvertisePage';
 import { globalMesh } from './services/globalMesh';
 
+// ✅ FIXED: Added loading check
 function PrivateRoute({ children }: { children: JSX.Element }) {
-  const { user } = useAuth();
-  return user ? children : <Navigate to="/login" />;
+  const token = localStorage.getItem('sasl_token');
+  if (!token) return <Navigate to="/login" replace />;
+  return children;
 }
+
 
 function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
@@ -72,7 +75,7 @@ function InstallPrompt() {
 }
 
 function AppContent() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [splashDone, setSplashDone] = useState(false);
 
   const handleSplashFinish = useCallback(() => setSplashDone(true), []);
@@ -81,7 +84,6 @@ function AppContent() {
   useEffect(() => {
     globalMesh.start();
     
-    // Log mesh stats every 30 seconds
     const interval = setInterval(() => {
       const stats = globalMesh.getStats();
       console.log('🌍 Mesh Stats:', stats);
@@ -90,13 +92,15 @@ function AppContent() {
     
     return () => {
       clearInterval(interval);
-      // Don't stop mesh on unmount — keep running in background
     };
   }, []);
 
   if (!splashDone) {
     return <SplashScreen onFinish={handleSplashFinish} />;
   }
+
+  // ✅ FIXED: Show nothing while checking auth
+  if (loading) return null;
 
   return (
     <ErrorBoundary>
@@ -105,8 +109,8 @@ function AppContent() {
       <InstallPrompt />
       <OfflineMeshStatus />
       <Routes>
-        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-        <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
+        <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />} />
+        <Route path="/register" element={user ? <Navigate to="/" replace /> : <Register />} />
         <Route path="/onboarding" element={<Onboarding />} />
         <Route element={<Layout />}>
           <Route path="/" element={<PrivateRoute><Feed /></PrivateRoute>} />
@@ -130,7 +134,7 @@ function AppContent() {
           <Route path="/qr-profile" element={<PrivateRoute><QRProfile username={user?.username || ''} /></PrivateRoute>} />
           <Route path="/advertise" element={<AdvertisePage />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </ErrorBoundary>
   );

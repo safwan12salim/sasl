@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import toast from 'react-hot-toast';
-import { ExternalLink, X, DollarSign, Eye } from 'lucide-react';
+import { ExternalLink, X, Eye } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface AdData {
@@ -11,7 +11,7 @@ interface AdData {
   content: string;
   image_url?: string;
   link: string;
-  cpc: number;
+  cpc: number | string;
 }
 
 export default function NativeAd() {
@@ -21,12 +21,20 @@ export default function NativeAd() {
   const [rewarded, setRewarded] = useState(false);
   const [dismissed, setDismissed] = useState(false);
 
+  // Safe CPC formatter
+  const formatCPC = (cpc: number | string | undefined | null): string => {
+    const num = Number(cpc);
+    if (isNaN(num)) return '0.0000';
+    return num.toFixed(4);
+  };
+
   useEffect(() => {
     if (!user) return;
     api.get('/monetization/ads/serve_ad/')
       .then(res => {
-        if (res.data.ad_available) {
-          setAd(res.data.ad);
+        if (res.data.ad_available && res.data.ad) {
+          const adData = { ...res.data.ad };
+          setAd(adData);
         }
       })
       .catch(() => {})
@@ -38,7 +46,7 @@ export default function NativeAd() {
     try {
       await api.post('/monetization/ads/reward_view/', { campaign_id: ad.id });
       setRewarded(true);
-      toast.success(`+$${ad.cpc.toFixed(4)} earned!`);
+      toast.success(`+$${formatCPC(ad.cpc)} earned!`);
     } catch (err: any) {
       toast.error(err.response?.data?.error || 'Reward failed');
     }
@@ -54,7 +62,6 @@ export default function NativeAd() {
       className="mb-4"
     >
       <div className="relative bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 border border-blue-100 rounded-2xl p-4 shadow-sm">
-        {/* Sponsored badge */}
         <span className="absolute top-3 left-3 text-[10px] uppercase tracking-wider text-gray-400 font-bold bg-white/80 px-2 py-0.5 rounded-full">
           Sponsored
         </span>
@@ -99,7 +106,7 @@ export default function NativeAd() {
                 {rewarded ? (
                   <>✓ Rewarded</>
                 ) : (
-                  <><Eye size={12} /> Earn ${ad.cpc.toFixed(4)}</>
+                  <><Eye size={12} /> Earn ${formatCPC(ad.cpc)}</>
                 )}
               </button>
             </div>

@@ -62,6 +62,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
     
     def get_earnings_summary(self, obj):
         request = self.context.get('request')
+        if request is None:  # ← ADD THIS LINE
+         return None
         # Only show earnings if user allows it OR viewing own profile
         if obj == request.user or obj.show_earnings:
             return {

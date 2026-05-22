@@ -23,6 +23,8 @@ class GroupChatViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def messages(self, request, pk=None):
         group = self.get_object()
+        if request.user not in group.members.all():
+         return Response({'error': 'Not a member'}, status=403)
         msgs = group.messages.all().order_by('created_at')[:100]
         return Response(GroupMessageSerializer(msgs, many=True).data)
 

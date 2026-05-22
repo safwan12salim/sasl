@@ -5,7 +5,7 @@ from users.serializers import UserProfileSerializer
 
 class GroupMessageSerializer(serializers.ModelSerializer):
     sender = UserProfileSerializer(read_only=True)
-    text = serializers.CharField(required=True)
+    text = serializers.CharField(required=False, allow_blank=True) 
     image = serializers.ImageField(required=False, allow_null=True)
 
     class Meta:

@@ -12,7 +12,7 @@ class CategorySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ProductCategory
-        fields = ['id', 'name', 'slug', 'icon', 'product_count']
+        fields = ['id', 'name', 'slug',  'product_count']
 
 
 class ProductReviewSerializer(serializers.ModelSerializer):

@@ -352,7 +352,13 @@ export default function GroupChat() {
                     {!isMe && !showAvatar && <div className="w-8 mr-2 flex-shrink-0" />}
                     <div className={`max-w-[70%] ${isMe ? 'order-1' : ''}`}>
                       {showAvatar && !isMe && <p className="text-xs text-gray-500 mb-0.5 ml-1">{msg.sender?.username}</p>}
-                      {msg.image && <img src={msg.image} alt="Shared" className="max-w-full rounded-xl mb-1 max-h-60 object-cover" />}
+                     {msg.image && (
+  <img 
+    src={msg.image.startsWith('http') ? msg.image : `http://localhost:8000${msg.image}`}
+    alt="Shared"
+    className="max-w-full rounded-xl mb-1 max-h-60 object-cover"
+  />
+)}
                       {msg.text && (
                         <div className={`px-4 py-2 rounded-2xl text-sm ${
                           isMe ? 'bg-green-500 text-white rounded-br-md' : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 rounded-bl-md shadow-sm'

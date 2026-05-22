@@ -6,32 +6,23 @@ class VideoConsumer(AsyncWebsocketConsumer):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = f'video_{self.room_name}'
 
-        # Join room group
-        await self.channel_layer.group_add(
-            self.room_group_name,
-            self.channel_name
-        )
+        await self.channel_layer.group_add(self.room_group_name, self.channel_name)
         await self.accept()
 
     async def disconnect(self, close_code):
-        # Leave room group
-        await self.channel_layer.group_discard(
-            self.room_group_name,
-            self.channel_name
-        )
+        await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
 
     async def receive(self, text_data):
         data = json.loads(text_data)
-        # Broadcast signaling data to all peers in the room
+        # Broadcast everything (offers, answers, candidates, AND chat messages)
         await self.channel_layer.group_send(
             self.room_group_name,
             {
-                'type': 'video_message',
+                'type': 'relay_message',
                 'data': data
             }
         )
 
-    async def video_message(self, event):
-        data = event['data']
+    async def relay_message(self, event):
         # Send to WebSocket
-        await self.send(text_data=json.dumps(data))
+        await self.send(text_data=json.dumps(event['data']))

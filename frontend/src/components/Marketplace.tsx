@@ -158,21 +158,31 @@ export default function Marketplace() {
     }
   };
 
-  const toggleWishlist = async (productId: string) => {
-    try {
-      const res = await api.post('/marketplace/wishlist/toggle/', { product_id: productId });
-      if (res.data.status === 'added') {
-        setWishlist(prev => [...prev, productId]);
-        toast.success('Added to wishlist!');
-      } else {
-        setWishlist(prev => prev.filter(id => id !== productId));
-        toast.success('Removed from wishlist');
-      }
-    } catch {
-      toast.error('Failed to update wishlist');
+    const toggleWishlist = async (productId: string) => {
+  // Optimistic update — instantly toggle the heart
+  setProducts(prev => prev.map(p => p.id === productId ? {
+    ...p,
+    is_wishlisted: !p.is_wishlisted
+  } : p));
+  
+  try {
+    const res = await api.post(`/marketplace/products/${productId}/toggle_wishlist/`, {});
+    // Sync with server response
+    if (res.data.status === 'added') {
+      setWishlist(prev => [...prev, productId]);
+      toast.success('Added to wishlist! ❤️');
+    } else {
+      setWishlist(prev => prev.filter(id => id !== productId));
+      toast.success('Removed from wishlist');
     }
-  };
-
+    // Refresh products to get accurate server state
+    fetchProducts();
+  } catch {
+    // Revert on error
+    toast.error('Failed to update wishlist');
+    fetchProducts(); // Refresh to get correct state
+  }
+};
   const submitReview = async (productId: string) => {
     try {
       await api.post(`/marketplace/products/${productId}/review/`, {
@@ -366,10 +376,14 @@ export default function Marketplace() {
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-gray-400"><Package size={48} /></div>
                 )}
-                <button onClick={(e) => { e.stopPropagation(); toggleWishlist(p.id); }}
-                  className={`absolute top-2 right-2 p-2 rounded-full shadow transition ${p.is_wishlisted ? 'bg-red-500 text-white' : 'bg-white text-gray-400 hover:text-red-500'}`}>
-                  <Heart size={16} className={p.is_wishlisted ? 'fill-white' : ''} />
-                </button>
+                <button 
+  onClick={(e) => { e.stopPropagation(); toggleWishlist(p.id); }}
+  className={`absolute top-2 right-2 p-2 rounded-full shadow transition ${
+    p.is_wishlisted ? 'bg-red-500 text-white' : 'bg-white text-gray-400 hover:text-red-500'
+  }`}
+>
+  <Heart size={16} className={p.is_wishlisted ? 'fill-white' : ''} />
+</button>
                 {p.stock <= 3 && p.stock > 0 && (
                   <span className="absolute top-2 left-2 bg-orange-500 text-white text-xs px-2 py-0.5 rounded-full">Only {p.stock} left</span>
                 )}

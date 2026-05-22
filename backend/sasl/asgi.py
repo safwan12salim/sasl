@@ -4,17 +4,14 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sasl.settings')
-
 django_asgi_app = get_asgi_application()
 
-import content.routing
-import streaming.routing
-
-websocket_urlpatterns = content.routing.websocket_urlpatterns + streaming.routing.websocket_urlpatterns
+from content.routing import websocket_urlpatterns as content_ws
+from streaming.routing import websocket_urlpatterns as streaming_ws
 
 application = ProtocolTypeRouter({
     "http": django_asgi_app,
     "websocket": AuthMiddlewareStack(
-        URLRouter(websocket_urlpatterns)
+        URLRouter(content_ws + streaming_ws)
     ),
 })
