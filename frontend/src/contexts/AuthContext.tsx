@@ -44,40 +44,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       api.defaults.headers.common['Authorization'] = `Bearer ${t}`;
       api.get('/users/profile/')
         .then(r => { setUser(r.data); setLoading(false); })
-        .catch(() => setLoading(false));
+        .catch(() => { 
+          localStorage.removeItem('sasl_token');
+          setToken(null);
+          setLoading(false); 
+        });
     } else {
       setLoading(false);
     }
   }, [token]);
 
   const login = async (email: string, password: string) => {
-  const res = await fetch('http://localhost:8000/api/auth/token/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
-  });
-  
-  if (!res.ok) {
-    const error = await res.json().catch(() => ({}));
-    throw new Error(error.detail || 'Login failed');
-  }
-  
-  const data = await res.json();
-  localStorage.setItem('sasl_token', data.access);
-  api.defaults.headers.common['Authorization'] = `Bearer ${data.access}`;
-  
-  // Fetch user — if this fails, still set token so user can navigate
-  try {
-    const userRes = await api.get('/users/profile/');
-    setUser(userRes.data);
-  } catch (profileErr) {
-    console.warn('Profile fetch failed, but token is set');
-  }
-  
-  setToken(data.access);
-  setLoading(false);
-};
-
+    // Get token from backend
+    const res = await api.post('/auth/token/', { email, password });
+    const { access } = res.data;
+    
+    // Store token
+    localStorage.setItem('sasl_token', access);
+    api.defaults.headers.common['Authorization'] = `Bearer ${access}`;
+    setToken(access);
+    
+    // Fetch user profile
+    try {
+      const profileRes = await api.get('/users/profile/');
+      setUser(profileRes.data);
+    } catch (profileErr) {
+      console.warn('Profile fetch failed, but token is set');
+    }
+    
+    setLoading(false);
+  };
 
   const register = async (email: string, username: string, password: string) => {
     await api.post('/users/register/', { email, username, password, password2: password });
@@ -86,13 +82,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     localStorage.removeItem('sasl_token');
+    delete api.defaults.headers.common['Authorization'];
     setToken(null);
     setUser(null);
     setLoading(false);
   };
 
   const refreshUser = async () => {
-    try { const r = await api.get('/users/profile/'); setUser(r.data); } catch {}
+    try { 
+      const r = await api.get('/users/profile/'); 
+      setUser(r.data); 
+    } catch {}
   };
 
   return (
