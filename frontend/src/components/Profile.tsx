@@ -68,7 +68,7 @@ export default function Profile() {
 
   const handleSave = async () => {
     const formData = new FormData();
-    formData.append(' display_name', editForm.display_name);
+    formData.append('display_name', editForm.display_name);
     formData.append('bio', editForm.bio);
     if (avatarFile) formData.append('avatar', avatarFile);
     try {
@@ -94,10 +94,10 @@ export default function Profile() {
   const addPortfolioItem = async () => {
     if (!pfTitle.trim()) return toast.error(t('Title required'));
     const formData = new FormData();
-    formData.append(t('title'), pfTitle);
-    formData.append(t('description'), pfDesc);
-    if (pfLink) formData.append(t('link'), pfLink);
-    if (pfImage) formData.append(t('image'), pfImage);
+    formData.append('title', pfTitle);
+formData.append('description', pfDesc);
+if (pfLink) formData.append('link', pfLink);
+if (pfImage) formData.append('image', pfImage);
     try {
       await api.post('/gigs/gigs/add_portfolio/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },

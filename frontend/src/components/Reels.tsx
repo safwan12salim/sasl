@@ -74,31 +74,34 @@ const [commentText, setCommentText] = useState('');
   }, []);
 
   useEffect(() => { fetchReels(); }, [fetchReels]);
-const handleLike = async (reelId: string) => {
+
+
+  const handleLike = async (reelId: string) => {
   if (reelId === 'demo-reel') return;
   
-  // Find current reel
   const reel = reels.find(r => r.id === reelId);
   if (!reel) return;
   
-  // Optimistic update — toggle
+  // Optimistic update
   const newLiked = !reel.liked_by_me;
   const newCount = newLiked ? reel.likes_count + 1 : reel.likes_count - 1;
   
   setReels(prev => prev.map(r => r.id === reelId ? {
     ...r,
     liked_by_me: newLiked,
-    likes_count: newCount
+    likes_count: Math.max(0, newCount)
   } : r));
   
   try {
     const res = await api.post(`/content/reels/${reelId}/like/`);
-    // Sync with server response
-    setReels(prev => prev.map(r => r.id === reelId ? {
-      ...r,
-      likes_count: res.data.likes_count,
-      liked_by_me: res.data.status === 'liked'
-    } : r));
+    // Only sync with server if the response is valid
+    if (res.data && typeof res.data.likes_count === 'number') {
+      setReels(prev => prev.map(r => r.id === reelId ? {
+        ...r,
+        likes_count: res.data.likes_count,
+        liked_by_me: res.data.status === 'liked'
+      } : r));
+    }
     if (navigator.vibrate) navigator.vibrate(10);
   } catch {
     // Revert on error
@@ -163,8 +166,8 @@ const handleComment = async (reelId: string) => {
     if (!reelFile) return toast.error(t('Select a video'));
     setUploading(true);
     const formData = new FormData();
-    formData.append(t('video'), reelFile);
-    formData.append(t('caption'), reelCaption);
+    formData.append('video', reelFile);
+formData.append('caption', reelCaption);
     try {
       await api.post('/content/reels/', formData);
       toast.success(t('Reel uploaded! 🎬'));
@@ -289,11 +292,7 @@ const handleComment = async (reelId: string) => {
                 </button>
 
                 {/* Comment button */}
-<button onClick={() => setCommentingReel(commentingReel === reel.id ? null : reel.id)} 
-  className="flex flex-col items-center gap-1 text-white hover:text-blue-400 transition">
-  <MessageCircle size={28} />
-  <span className="text-xs">{reel.comments_count}</span>
-</button>
+
 
 {/* Comment input */}
 {commentingReel === reel.id && (

@@ -8,8 +8,7 @@ import { useAuth } from '../contexts/AuthContext';
 import toast from 'react-hot-toast';
 import {
   Play, Users, DollarSign, Loader2, Radio, AlertCircle, Video, VideoOff,
-  Clock, Calendar, TrendingUp, Crown, Heart, MessageCircle, Share2,
-  Bookmark, Tag, Filter, ChevronRight, Star, Zap
+  Clock, Calendar, TrendingUp, Crown, Image as ImageIcon, X
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WebRTCConnection } from '../services/webrtc';
@@ -57,6 +56,8 @@ export default function Streaming() {
   const [category, setCategory] = useState('Talk');
   const [description, setDescription] = useState('');
   const [tags, setTags] = useState('');
+  const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState<string | null>(null);
 
   // Donation
   const [amount, setAmount] = useState<{ [key: string]: number }>({});
@@ -69,9 +70,6 @@ export default function Streaming() {
   const wsRef = useRef<WebSocket | null>(null);
   const rtcRef = useRef<WebRTCConnection | null>(null);
   const token = localStorage.getItem('sasl_token');
-
-  // Saved streams
-  const [savedStreams, setSavedStreams] = useState<string[]>([]);
 
   // ============================================================
   // FETCH
@@ -106,14 +104,19 @@ export default function Streaming() {
   const startStream = async () => {
     if (!title.trim()) return toast.error(t('Enter a title'));
     try {
-      await api.post('/streaming/streams/', {
-        title,
-        description,
-        category,
-        tags: tags.split(',').map(t => t.trim()).filter(Boolean),
+      const formData = new FormData();
+      formData.append('title', title);
+      formData.append('description', description);
+      formData.append('category', category);
+      formData.append('tags', tags);
+      if (thumbnailFile) formData.append('thumbnail', thumbnailFile);
+      
+      await api.post('/streaming/streams/', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
       toast.success(t('You are now live! 🎥'));
       setTitle(''); setDescription(''); setTags('');
+      setThumbnailFile(null); setThumbnailPreview(null);
       fetchStreams();
     } catch (err: any) {
       toast.error(err.response?.data?.error || t('Failed to start stream'));
@@ -128,7 +131,7 @@ export default function Streaming() {
         amount: amt,
         message: donationMessage[streamId] || '👏',
       });
-      toast.success(t(`Donated $${amt}! 🎉`));
+      toast.success(`Donated $${amt}! 🎉`);
       setAmount(prev => ({ ...prev, [streamId]: 0 }));
       setDonationMessage(prev => ({ ...prev, [streamId]: '' }));
       fetchStreams();
@@ -157,7 +160,6 @@ export default function Streaming() {
   };
 
   const saveStream = (streamId: string) => {
-    setSavedStreams(prev => [...prev, streamId]);
     toast.success(t('Stream saved!'));
   };
 
@@ -282,6 +284,24 @@ export default function Streaming() {
             <input className="input-field" placeholder={t('Tags (comma separated)')} value={tags} onChange={e => setTags(e.target.value)} />
           </div>
           <textarea className="input-field" placeholder={t('Description...')} value={description} onChange={e => setDescription(e.target.value)} rows={2} />
+          
+          {/* Thumbnail Upload */}
+          <div className="flex items-center gap-3">
+            <label className="btn-ghost cursor-pointer flex items-center gap-1 text-sm">
+              <ImageIcon size={18} /> {thumbnailFile ? thumbnailFile.name : t('Upload Thumbnail')}
+              <input type="file" accept="image/*" className="hidden" onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) { setThumbnailFile(file); setThumbnailPreview(URL.createObjectURL(file)); }
+              }} />
+            </label>
+            {thumbnailPreview && (
+              <div className="relative">
+                <img src={thumbnailPreview} alt="thumbnail" className="h-10 w-16 rounded object-cover" />
+                <button onClick={() => { setThumbnailFile(null); setThumbnailPreview(null); }} className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full p-0.5"><X size={10} /></button>
+              </div>
+            )}
+          </div>
+          
           <div className="flex gap-2">
             <button onClick={startStream} className="btn-primary bg-red-500 hover:bg-red-600 flex items-center gap-2">
               <span className="w-2 h-2 bg-white rounded-full animate-pulse" /> {t('Go Live Now')}
@@ -316,7 +336,7 @@ export default function Streaming() {
       <div className="flex gap-2 overflow-x-auto pb-1 mb-6">
         <button onClick={() => setActiveCategory('')} className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition ${!activeCategory ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>{t('All')}</button>
         {CATEGORIES.map(cat => (
-          <button key={cat} onClick={() => setActiveCategory(cat)} className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition ${activeCategory === cat ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>{t(cat)}</button>
+          <button key={cat} onClick={() => setActiveCategory(cat)} className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition ${activeCategory === cat ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}>{cat}</button>
         ))}
       </div>
 

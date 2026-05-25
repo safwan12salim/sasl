@@ -139,16 +139,16 @@ export default function GigCentral() {
     setError(null);
     try {
       const params = new URLSearchParams();
-      if (activeTab !== t('mine')) params.set(t('status'), activeTab);
-      if (activeTab === t('mine')) params.set(t('mine'), 'true');
-      if (searchQuery) params.set(t('search'), searchQuery);
+      if (activeTab !== 'mine') params.set('status', activeTab);
+if (activeTab === 'mine') params.set('mine', 'true');
+if (searchQuery) params.set('search', searchQuery);
       
       const res = await api.get(`/gigs/gigs/?${params.toString()}`);
       setGigs(Array.isArray(res.data) ? res.data : res.data.results || []);
       
       // Calculate stats
       const all = Array.isArray(res.data) ? res.data : res.data.results || [];
-      const completed = all.filter((g: Gig) => g.status === t('completed'));
+      const completed = all.filter((g: Gig) => g.status === 'completed');
       setStats({
         totalGigs: all.length,
         completedGigs: completed.length,
@@ -267,10 +267,10 @@ export default function GigCentral() {
   const addPortfolioItem = async () => {
     if (!pfTitle) return toast.error(t('Title required'));
     const formData = new FormData();
-    formData.append(t('title'), pfTitle);
-    formData.append(t('description'), pfDesc);
-    formData.append(t('link'), pfLink);
-    if (pfImage) formData.append(t('image'), pfImage);
+    formData.append('title', pfTitle);
+formData.append('description', pfDesc);
+formData.append('link', pfLink);
+if (pfImage) formData.append('image', pfImage);
     
     try {
       await api.post('/gigs/gigs/add_portfolio/', formData, {
