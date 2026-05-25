@@ -18,7 +18,7 @@ export default function WebRTCPrivateChat({ roomId, onClose }: Props) {
   const { t } = useTranslation();
 
   useEffect(() => {
-    const wsUrl = `ws://localhost:8000/ws/video/${roomId}/?token=${token}`;
+    const wsUrl = `wss://sasl.pythonanywhere.com/ws/video/${roomId}/?token=${token}`;
     const ws = new WebSocket(wsUrl);
     wsRef.current = ws;
 

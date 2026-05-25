@@ -66,7 +66,8 @@ export default function NotificationBell() {
 
   const connectWebSocket = () => {
     const token = localStorage.getItem('sasl_token');
-    const ws = new WebSocket(`ws://localhost:8000/ws/notifications/?token=${token}`);
+    const wsUrl = `wss://sasl.pythonanywhere.com/ws/notifications/?token=${token}`;
+    const ws = new WebSocket(wsUrl);
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === t('unread_count')) {

@@ -180,7 +180,7 @@ export default function Streaming() {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       .then(stream => {
         if (localVideoRef.current) localVideoRef.current.srcObject = stream;
-        const wsUrl = `ws://localhost:8000/ws/video/${streamId}/?token=${token}`;
+        const wsUrl = `wss://sasl.pythonanywhere.com/ws/video/${streamId}/?token=${token}`;
         const ws = new WebSocket(wsUrl);
         wsRef.current = ws;
         const rtc = new WebRTCConnection((msg) => { if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify(msg)); });

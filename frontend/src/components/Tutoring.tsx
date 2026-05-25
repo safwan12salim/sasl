@@ -285,7 +285,7 @@ const STATUS_COLORS: Record<string, string> = {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       .then(stream => {
         if (localVideoRef.current) localVideoRef.current.srcObject = stream;
-        const wsUrl = `ws://localhost:8000/ws/video/${sessionId}/?token=${token}`;
+        const wsUrl = `wss://sasl.pythonanywhere.com/ws/video/${sessionId}/?token=${token}`;
         const ws = new WebSocket(wsUrl);
         wsRef.current = ws;
         const rtc = new WebRTCConnection((msg) => { if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify(msg)); });
