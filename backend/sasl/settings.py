@@ -280,6 +280,7 @@ if IS_DEVELOPMENT:
 else:
     CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    'https://saslapp.netlify.app',
     'https://sasl.netlify.app',
     'https://your-custom-domain.com',
 ]
