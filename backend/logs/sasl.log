@@ -21928,3 +21928,4 @@ DEBUG 2026-05-25 00:49:05,447 selector_events 11632 28276 Using selector: Select
 DEBUG 2026-05-25 00:52:38,269 selector_events 30124 29596 Using selector: SelectSelector
 DEBUG 2026-05-25 00:55:57,607 selector_events 7376 24684 Using selector: SelectSelector
 DEBUG 2026-05-25 00:56:24,522 selector_events 27404 9712 Using selector: SelectSelector
+DEBUG 2026-05-25 22:45:47,103 selector_events 26028 19464 Using selector: SelectSelector
