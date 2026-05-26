@@ -38,16 +38,21 @@ class SkillBadgeSerializer(serializers.ModelSerializer):
 
 class PortfolioSerializer(serializers.ModelSerializer):
     image_url = serializers.SerializerMethodField()
+    image = serializers.ImageField(required=False)
     
     class Meta:
         model = Portfolio
         fields = ['id', 'title', 'description', 'image', 'image_url', 'link', 'created_at']
-        read_only_fields = ['user']
+        read_only_fields = ['user', 'created_at']
     
     def get_image_url(self, obj):
         if obj.image and (request := self.context.get('request')):
             return request.build_absolute_uri(obj.image.url)
         return obj.image.url if obj.image else None
+    
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+        return super().create(validated_data)
 
 
 class GigSerializer(serializers.ModelSerializer):

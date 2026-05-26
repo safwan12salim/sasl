@@ -202,11 +202,11 @@ class GigViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['post'])
     def add_portfolio(self, request):
-        serializer = PortfolioSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+      serializer = PortfolioSerializer(data=request.data, context={'request': request})
+      if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+      return Response(serializer.errors, status=400)
 
     @action(detail=False, methods=['get'])
     def recommended(self, request):
