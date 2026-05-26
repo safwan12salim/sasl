@@ -168,6 +168,7 @@ const handleComment = async (reelId: string) => {
     const formData = new FormData();
     formData.append('video', reelFile);
 formData.append('caption', reelCaption);
+
     try {
       await api.post('/content/reels/', formData);
       toast.success(t('Reel uploaded! 🎬'));
@@ -282,10 +283,10 @@ formData.append('caption', reelCaption);
                    <Heart size={28} className={reel.liked_by_me ? 'fill-red-500 text-red-500' : 'text-white'} />
                   <span className="text-xs">{reel.likes_count}</span>
                 </button>
-                <button onClick={() => handleComment(reel.id)} className="flex flex-col items-center gap-1 text-white hover:text-blue-400 transition">
-                  <MessageCircle size={28} />
-                  <span className="text-xs">{reel.comments_count}</span>
-                </button>
+                <button onClick={() => setCommentingReel(commentingReel === reel.id ? null : reel.id)} className="flex flex-col items-center gap-1 text-white hover:text-blue-400 transition">
+  <MessageCircle size={28} />
+  <span className="text-xs">{reel.comments_count}</span>
+</button>
                 <button onClick={() => handleShare(reel.id)} className="flex flex-col items-center gap-1 text-white hover:text-green-400 transition">
                   <Share2 size={28} />
                   <span className="text-xs">{t('Share')}</span>
