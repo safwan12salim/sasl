@@ -436,7 +436,15 @@ export default function SnapSender() {
                 <video src={URL.createObjectURL(blob)} controls className="w-full rounded-lg max-h-48" />
               ) : (
                 <img src={URL.createObjectURL(blob)} alt="Captured" className="w-full rounded-lg max-h-48 object-cover" />
+            
               )}
+              
+              <button 
+  onClick={() => { setBlob(null); setDrawings([]); }}
+  className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 shadow"
+>
+  <X size={14} />
+</button>
               <div className="flex gap-2">
                 <button onClick={() => setShowContacts(!showContacts)} className="btn-ghost text-sm flex items-center gap-1">
                   <Users size={14} /> {t('Contacts')}
