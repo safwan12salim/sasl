@@ -98,14 +98,6 @@ class ReportSerializer(serializers.ModelSerializer):
         model = Report
         fields = ['id', 'reporter', 'post', 'reason', 'created_at', 'reviewed']
 
-
-
-
-
-
-
-from .models import Reel
-
 class ReelSerializer(serializers.ModelSerializer):
     user = UserProfileSerializer(read_only=True)
     video_url = serializers.SerializerMethodField()
@@ -126,22 +118,6 @@ class ReelSerializer(serializers.ModelSerializer):
         if request and request.user.is_authenticated:
             return ReelLike.objects.filter(reel=obj, user=request.user).exists()
         return False
-
-
-
-
-
-
-
-
-class ReelCommentSerializer(serializers.ModelSerializer):
-    user = UserProfileSerializer(read_only=True)
-    
-    class Meta:
-        model = ReelComment
-        fields = ['id', 'user', 'text', 'created_at']
-
-
 
 class ReelCommentSerializer(serializers.ModelSerializer):
     user = UserProfileSerializer(read_only=True)
