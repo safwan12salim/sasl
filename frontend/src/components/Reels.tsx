@@ -34,7 +34,7 @@ export default function Reels() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [reelComments, setReelComments] = useState<Record<string, any[]>>({});
   const [showComments, setShowComments] = useState<string | null>(null);
-  const [commentText, setCommentText] = useState('');
+  const [commentTexts, setCommentTexts] = useState<Record<string, string>>({});
 
   const fetchReels = useCallback(async () => {
     setLoading(true);
@@ -141,21 +141,20 @@ export default function Reels() {
   };
 
   const handleComment = async (reelId: string) => {
-    if (!commentText.trim()) return;
+    const text = commentTexts[reelId] || '';
+    if (!text.trim()) return;
     try {
-      await api.post(`/content/reels/${reelId}/comment/`, { text: commentText });
+      await api.post(`/content/reels/${reelId}/comment/`, { text });
       setReels(prev => prev.map(r => r.id === reelId ? {
         ...r, comments_count: r.comments_count + 1
       } : r));
-      setCommentText('');
+      setCommentTexts(prev => ({ ...prev, [reelId]: '' }));
       toast.success('Comment added! 💬');
-      // Refresh comments
       fetchReelComments(reelId);
     } catch {
       toast.error('Comment failed');
     }
   };
-
   const fetchReelComments = async (reelId: string) => {
     try {
       const res = await api.get(`/content/reels/${reelId}/comments/`);
@@ -322,9 +321,9 @@ export default function Reels() {
                   {/* Comment input */}
                   <div className="flex gap-2 mt-2 pt-2 border-t border-white/10">
                     <input
-                      value={commentText}
-                      onChange={e => setCommentText(e.target.value)}
-                      placeholder="Add a comment..."
+                      value={commentTexts[reel.id] || ''}
+  onChange={e => setCommentTexts(prev => ({ ...prev, [reel.id]: e.target.value }))}
+  placeholder="Add a comment..."  
                       className="flex-1 bg-white/20 text-white px-3 py-2 rounded-full text-xs border border-white/20 outline-none"
                       onKeyDown={e => e.key === 'Enter' && handleComment(reel.id)}
                     />

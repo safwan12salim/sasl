@@ -419,22 +419,8 @@ class ReelViewSet(viewsets.ModelViewSet):
         reel.save(update_fields=['likes_count'])
         return Response({'status': 'unliked', 'likes_count': reel.likes_count})  
 
-    @action(detail=True, methods=['post'])
-    def comment(self, request, pk=None):
-     reel = self.get_object()
-     text = request.data.get('text', '')
-     if not text.strip():
-        return Response({'error': 'Text required'}, status=400)
-    # Create a Post-like comment for the reel
-     from .models import Comment
-    # Since Reel doesn't have a comments model, update the counter
-     reel.comments_count += 1
-     reel.save(update_fields=['comments_count'])
-     return Response({'status': 'commented', 'comments_count': reel.comments_count}) 
-
-
+   
     
-
     @action(detail=True, methods=['post'])
     def comment(self, request, pk=None):
         reel = self.get_object()
@@ -445,8 +431,6 @@ class ReelViewSet(viewsets.ModelViewSet):
         reel.comments_count = ReelComment.objects.filter(reel=reel).count()
         reel.save(update_fields=['comments_count'])
         return Response(ReelCommentSerializer(comment).data, status=201)
-
-
 
     @action(detail=True, methods=['get'])
     def comments(self, request, pk=None):
