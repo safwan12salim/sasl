@@ -24,6 +24,7 @@ import EmojiPicker from 'emoji-picker-react';
 import { contentModerator } from '../services/contentModeration';
 import { getMeshNode } from './OfflineMeshStatus';
 import { useTranslation } from 'react-i18next';
+
 // ---------- TYPES ----------
 interface Post {
   id: string;
@@ -84,14 +85,20 @@ const Feed: React.FC = () => {
   const [showStoryRecorder, setShowStoryRecorder] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const isFetching = useRef(false);
+  const postsLoaded = useRef(false);
   const { t } = useTranslation();
+
   // ============================================================
-  // FETCH POSTS - Fixed to prevent infinite loops
+  // FETCH POSTS — No flickering, preserves existing posts
   // ============================================================
   const fetchPosts = useCallback(async (pageNum: number, append = false) => {
     if (isFetching.current) return;
     isFetching.current = true;
-    setLoading(true);
+    
+    // Only show loading spinner on first load when there are no posts
+    if (posts.length === 0 || !append) {
+      setLoading(true);
+    }
     
     try {
       if (!isOnline) {
@@ -108,9 +115,9 @@ const Feed: React.FC = () => {
           created_at: p.created_at,
           poll: undefined,
         }));
-
         setPosts(mapped);
         setHasMore(false);
+        setInitialLoad(false);
         return;
       }
 
@@ -129,14 +136,23 @@ const Feed: React.FC = () => {
         sortedResults = results;
       }
 
-      // Update state - prevent duplicates when appending
+      // Update state — never clear existing posts, only add/merge
       setPosts(prev => {
-        if (!append) return sortedResults;
+        if (!append) {
+          // First load: merge with existing to prevent flicker
+          if (prev.length === 0) return sortedResults;
+          const existingIds = new Set(prev.map(p => p.id));
+          const trulyNew = sortedResults.filter((p: Post) => !existingIds.has(p.id));
+          return trulyNew.length > 0 ? [...sortedResults, ...prev.filter(p => !sortedResults.find((s: Post) => s.id === p.id))] : prev;
+        }
+        // Append mode: add only new ones
         const existingIds = new Set(prev.map(p => p.id));
         const newPosts = sortedResults.filter((p: Post) => !existingIds.has(p.id));
-        if (newPosts.length === 0) return prev;
-        return [...prev, ...newPosts];
+        return newPosts.length > 0 ? [...prev, ...newPosts] : prev;
       });
+      
+      postsLoaded.current = true;
+
       // Cache offline
       for (const p of results) {
         await db.posts.put({
@@ -152,59 +168,46 @@ const Feed: React.FC = () => {
       }
 
       // Check if more pages exist
-            // Check if more pages exist — FIXED
       const nextPage = data?.next;
       const currentPageSize = results.length;
       setHasMore(!!nextPage && currentPageSize > 0);
     } catch (err) {
-      if (!append && initialLoad) {
-         console.warn(t('feed_fetch_failed'), err);
+      if (!append && posts.length === 0) {
+        console.warn(t('feed_fetch_failed'), err);
       }
     } finally {
       setLoading(false);
       setInitialLoad(false);
       isFetching.current = false;
     }
-  }, [isOnline, initialLoad]);
+  }, [isOnline, posts.length]);
 
   // ============================================================
-  // INITIAL LOAD
+  // INITIAL LOAD — runs once on mount
   // ============================================================
-  
-
-   const hasFetched = useRef(false);
-
-useEffect(() => {
-  if (hasFetched.current) return;
-  
-  const token = localStorage.getItem('sasl_token');
-  if (token) {
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  }
-  
-  hasFetched.current = true;
-  
-  const timer = setTimeout(() => {
+  useEffect(() => {
+    const token = localStorage.getItem('sasl_token');
+    if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    }
+    
     fetchPosts(1, false);
     loadStories();
     loadSuggestedUsers();
     loadOfflineQueue();
-  }, 100);
-  
-  return () => clearTimeout(timer);
-}, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // ============================================================
-  // INFINITE SCROLL OBSERVER - Fixed
+  // INFINITE SCROLL OBSERVER
   // ============================================================
   useEffect(() => {
     if (!loader.current) return;
     
-         const observer = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting && hasMore && !loading && !isFetching.current) {
+    const observer = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore && !loading && !isFetching.current && posts.length > 0) {
         setPage(prev => {
           const nextPage = prev + 1;
-          // Safety cap — stop after 50 pages
           if (nextPage > 50) {
             setHasMore(false);
             return prev;
@@ -217,7 +220,7 @@ useEffect(() => {
     
     observer.observe(loader.current);
     return () => observer.disconnect();
-  }, [hasMore, loading, fetchPosts]);
+  }, [hasMore, loading, fetchPosts, posts.length]);
 
   // ============================================================
   // HELPERS
@@ -236,16 +239,19 @@ useEffect(() => {
   };
 
   // ============================================================
-  // LIKE HANDLER
+  // LIKE HANDLER — updates single post, no feed flicker
   // ============================================================
   const handleLike = async (postId: string) => {
+    // Optimistic update — instant, no flicker
     setPosts(prev => prev.map(p => p.id === postId ? {
       ...p,
       liked_by_me: !p.liked_by_me,
       likes_count: p.liked_by_me ? p.likes_count - 1 : p.likes_count + 1
     } : p));
+    
     try {
       const res = await api.post(`/content/posts/${postId}/like/`);
+      // Sync with server — still no flicker
       setPosts(prev => prev.map(p => p.id === postId ? {
         ...p,
         likes_count: res.data.likes_count,
@@ -253,7 +259,12 @@ useEffect(() => {
       } : p));
       if (navigator.vibrate) navigator.vibrate(10);
     } catch {
-      fetchPosts(1, false);
+      // Revert on error — still no flicker
+      setPosts(prev => prev.map(p => p.id === postId ? {
+        ...p,
+        liked_by_me: !p.liked_by_me,
+        likes_count: p.liked_by_me ? p.likes_count + 1 : p.likes_count - 1
+      } : p));
     }
   };
 
@@ -318,20 +329,19 @@ useEffect(() => {
     }
   };
   
-   const handleDelete = async (postId: string) => {
-  if (!window.confirm('Delete this post?')) return;
-  try {
-    await api.delete(`/content/posts/${postId}/delete_post/`);
-    setPosts(prev => prev.filter(p => p.id !== postId));
-    toast.success('Post deleted');
-  } catch {
-    toast.error('Delete failed');
-  }
-};
-
+  const handleDelete = async (postId: string) => {
+    if (!window.confirm('Delete this post?')) return;
+    try {
+      await api.delete(`/content/posts/${postId}/delete_post/`);
+      setPosts(prev => prev.filter(p => p.id !== postId));
+      toast.success(t('delete'));
+    } catch {
+      toast.error(t('delete_failed'));
+    }
+  };
 
   // ============================================================
-  // SUBMIT POST
+  // SUBMIT POST — prepends without clearing feed
   // ============================================================
   const submitPost = async () => {
     if (!composing.trim() && !selectedFile) return;
@@ -369,6 +379,7 @@ useEffect(() => {
           }
         },
       } as any);
+      // Prepend new post — no feed flicker
       setPosts(prev => [res.data, ...prev]);
       resetComposer();
       toast.success(t('posted'));
@@ -432,7 +443,7 @@ useEffect(() => {
       setOfflineQueue([]);
       localStorage.removeItem('sasl_offline_posts');
       toast.success(t('offline_posts_synced'));
-      await fetchPosts(1, false);
+      fetchPosts(1, false);
     } catch {
       toast.error(t('sync_failed'));
     } finally {
@@ -541,9 +552,9 @@ useEffect(() => {
             <Share2 className="w-5 h-5" /> {post.shares_count}
           </button>
           
-{post.author.username === user?.username && (
-  <button onClick={() => handleDelete(post.id)} className="text-red-500 text-xs">{t('delete')}</button>
-)}
+          {post.author.username === user?.username && (
+            <button onClick={() => handleDelete(post.id)} className="text-red-500 text-xs">{t('delete')}</button>
+          )}
         </div>
         <AnimatePresence>
           {showComments && (
@@ -591,7 +602,7 @@ useEffect(() => {
       <div className="bg-white rounded-2xl shadow p-4 mb-6">
         <textarea
           className="w-full border-none outline-none resize-none text-lg placeholder-gray-400"
-          placeholder="What's happening? (Works offline!)"
+          placeholder={t('whats_happening')}
           value={composing}
           onChange={e => setComposing(e.target.value)}
           rows={3}
@@ -644,7 +655,7 @@ useEffect(() => {
         )}
       </div>
 
-      {/* Posts */}
+      {/* Posts — never flicker */}
       {posts.map((post, idx) => (
         <React.Fragment key={post.id}>
           <PostCard post={post} />
@@ -654,7 +665,8 @@ useEffect(() => {
 
       {/* Infinite scroll loader */}
       <div ref={loader} className="h-10 flex justify-center items-center">
-        {loading && <Loader2 className="animate-spin text-green-500" />}
+        {loading && posts.length === 0 && <Loader2 className="animate-spin text-green-500" />}
+        {loading && posts.length > 0 && <Loader2 className="animate-spin text-green-500 w-4 h-4" />}
         {!hasMore && !loading && posts.length > 0 && (
           <p className="text-gray-400 text-sm">{t('all_caught_up')}</p>
         )}
