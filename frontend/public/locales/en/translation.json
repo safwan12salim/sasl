@@ -647,7 +647,13 @@
 "join_conversations_share_ideas_connect_with_voices": "Join conversations, share ideas, connect with voices",
 "host_audio_room": "Host Audio Room",
 "hosted_by": "Hosted by",
-"referrals": "Referrals"
+"referrals": "Referrals",
+"analytics_dashboard": "Analytics Dashboard",
+"revenue_trend": "Revenue Trend",
+"user_growth": "User Growth",
+"no_live_rooms": "No Live Rooms",
+"be_the_first_to_host_one": "Be the first to host one!",
+"hosted_by": "Hosted by"
 
 
 }

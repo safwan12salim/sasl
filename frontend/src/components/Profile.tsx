@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+
 export default function Profile() {
   const { user: currentUser } = useAuth();
   const { username } = useParams<{ username: string }>();
@@ -36,6 +37,10 @@ export default function Profile() {
   const [pfImage, setPfImage] = useState<File | null>(null);
   const { t } = useTranslation();
   const isOwnProfile = !username || (currentUser && currentUser.username === username);
+  const [userPosts, setUserPosts] = useState<any[]>([]);
+  const [userReels, setUserReels] = useState<any[]>([]);
+  const [userProducts, setUserProducts] = useState<any[]>([]);
+  const [userGigs, setUserGigs] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -49,7 +54,7 @@ export default function Profile() {
           setAvatarPreview(res.data.avatar_url || null);
         }
       } catch (err) {
-        toast.error( t('Profile not found'));
+        toast.error(t('Profile not found'));
       } finally {
         setLoading(false);
       }
@@ -58,11 +63,30 @@ export default function Profile() {
     fetchPortfolio();
   }, [username]);
 
-  // ✅ FIXED: Fetch portfolio items
   const fetchPortfolio = async () => {
     try {
       const res = await api.get('/gigs/gigs/portfolio/');
       setPortfolio(res.data || []);
+    } catch {}
+  };
+
+  const fetchUserContent = async (tab: string) => {
+    const uname = profile?.username;
+    if (!uname) return;
+    try {
+      if (tab === 'posts') {
+        const res = await api.get(`/content/posts/?author=${uname}`);
+        setUserPosts(res.data.results || []);
+      } else if (tab === 'reels') {
+        const res = await api.get(`/content/reels/?user=${uname}`);
+        setUserReels(res.data.results || []);
+      } else if (tab === 'products') {
+        const res = await api.get(`/marketplace/products/?seller=${uname}`);
+        setUserProducts(res.data.results || []);
+      } else if (tab === 'gigs') {
+        const res = await api.get(`/gigs/gigs/?mine=true`);
+        setUserGigs(res.data.results || []);
+      }
     } catch {}
   };
 
@@ -72,12 +96,12 @@ export default function Profile() {
     formData.append('bio', editForm.bio);
     if (avatarFile) formData.append('avatar', avatarFile);
     try {
-      await api.patch('/users/profile/', formData, { headers: {'Content-Type': 'multipart/form-data' } });
+      await api.patch('/users/profile/', formData, { headers: {'Content-Type': 'multipart/form-data'} });
       toast.success(t('Profile updated!'));
       setIsEditing(false);
       window.location.reload();
     } catch (err: any) {
-      toast.error(err.response?.data?.detail ||t('Update failed'));
+      toast.error(err.response?.data?.detail || t('Update failed'));
     }
   };
 
@@ -90,14 +114,13 @@ export default function Profile() {
     } catch {}
   };
 
-  // ✅ FIXED: Add portfolio item
   const addPortfolioItem = async () => {
     if (!pfTitle.trim()) return toast.error(t('Title required'));
     const formData = new FormData();
     formData.append('title', pfTitle);
-formData.append('description', pfDesc);
-if (pfLink) formData.append('link', pfLink);
-if (pfImage) formData.append('image', pfImage);
+    formData.append('description', pfDesc);
+    if (pfLink) formData.append('link', pfLink);
+    if (pfImage) formData.append('image', pfImage);
     try {
       await api.post('/gigs/gigs/add_portfolio/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -136,7 +159,6 @@ if (pfImage) formData.append('image', pfImage);
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Cover Photo */}
       <div className="relative h-48 md:h-64 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600">
         {[...Array(20)].map((_, i) => (
           <motion.div
@@ -149,7 +171,6 @@ if (pfImage) formData.append('image', pfImage);
         ))}
       </div>
 
-      {/* Profile Info */}
       <div className="max-w-4xl mx-auto px-4 -mt-16 relative z-10">
         <div className="flex flex-col md:flex-row items-start gap-6">
           <div className="relative">
@@ -255,7 +276,10 @@ if (pfImage) formData.append('image', pfImage);
             { key: 'gigs', label: t('Gigs'), icon: <Zap size={14} /> },
             { key: 'portfolio', label: t('Portfolio'), icon: <Briefcase size={14} /> },
           ].map(({ key, label, icon }) => (
-            <button key={key} onClick={() => setActiveTab(key as any)}
+            <button key={key} onClick={() => {
+              setActiveTab(key as any);
+              fetchUserContent(key);
+            }}
               className={`flex items-center gap-1 px-6 py-3 text-sm font-semibold transition border-b-2 -mb-px whitespace-nowrap ${
                 activeTab === key ? 'border-green-500 text-green-600' : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}>
@@ -266,6 +290,52 @@ if (pfImage) formData.append('image', pfImage);
 
         {/* Tab Content */}
         <div className="py-6">
+          {activeTab === 'posts' && (
+            <div className="space-y-3">
+              {userPosts.length === 0 && <p className="text-gray-500 text-center py-10">{t('no_posts_yet')}</p>}
+              {userPosts.map((post: any) => (
+                <div key={post.id} className="glass p-4 rounded-xl">
+                  <p className="text-sm">{post.text}</p>
+                  <div className="flex gap-4 mt-2 text-xs text-gray-500">
+                    <span>❤️ {post.likes_count}</span><span>💬 {post.comments_count}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {activeTab === 'reels' && (
+            <div className="grid grid-cols-2 gap-3">
+              {userReels.length === 0 && <p className="text-gray-500 text-center py-10 col-span-2">{t('no_reels_yet')}</p>}
+              {userReels.map((reel: any) => (
+                <div key={reel.id} className="glass rounded-xl overflow-hidden">
+                  <video src={reel.video_url} className="w-full h-32 object-cover" />
+                  <p className="p-2 text-xs">{reel.caption}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {activeTab === 'products' && (
+            <div className="space-y-3">
+              {userProducts.length === 0 && <p className="text-gray-500 text-center py-10">{t('no_products')}</p>}
+              {userProducts.map((p: any) => (
+                <div key={p.id} className="glass p-3 rounded-xl flex gap-3">
+                  {p.image_url && <img src={p.image_url} className="w-16 h-16 rounded-lg object-cover" alt="" />}
+                  <div><p className="font-semibold text-sm">{p.title}</p><p className="text-green-600">${p.price}</p></div>
+                </div>
+              ))}
+            </div>
+          )}
+          {activeTab === 'gigs' && (
+            <div className="space-y-3">
+              {userGigs.length === 0 && <p className="text-gray-500 text-center py-10">{t('no_gigs')}</p>}
+              {userGigs.map((g: any) => (
+                <div key={g.id} className="glass p-3 rounded-xl">
+                  <p className="font-semibold text-sm">{g.title}</p>
+                  <p className="text-xs text-gray-500">{g.status} · ${g.budget}</p>
+                </div>
+              ))}
+            </div>
+          )}
           {activeTab === 'portfolio' && (
             <div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -277,7 +347,6 @@ if (pfImage) formData.append('image', pfImage);
                     {item.link && <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-500 hover:underline">View Project →</a>}
                   </motion.div>
                 ))}
-                {/* ✅ FIXED: Add Portfolio Button actually works now */}
                 {isOwnProfile && (
                   <button
                     onClick={() => setShowPortfolioForm(true)}
@@ -289,7 +358,6 @@ if (pfImage) formData.append('image', pfImage);
                 )}
               </div>
 
-              {/* ✅ FIXED: Portfolio Form Modal */}
               <AnimatePresence>
                 {showPortfolioForm && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -317,9 +385,6 @@ if (pfImage) formData.append('image', pfImage);
                 )}
               </AnimatePresence>
             </div>
-          )}
-          {activeTab !== 'portfolio' && (
-            <p className="text-gray-500 text-center py-10">{t('Content will appear here')}</p>
           )}
         </div>
       </div>

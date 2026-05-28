@@ -6,6 +6,7 @@ Fully working – no incompatible SQL, no missing imports.
 import json
 import logging
 from datetime import timedelta
+import uuid
 from django.utils import timezone
 from django.db.models import Q, Count, F, Prefetch
 from django.core.cache import cache
@@ -16,20 +17,22 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 
 from analytics.views import User
+from sasl import settings
 
 from .models import (
-    Post, PostLike, Comment, Reel, ReelLike, Share, Story, Notification,
+    Post, PostLike, Comment, Reel, ReelLike, ReelComment, Share, Story, Notification,
     Poll, PollOption, PollVote, Report
 )
-
 
 from .serializers import (
     PostSerializer, CommentCreateSerializer, RecursiveCommentSerializer, ReelSerializer,
     StorySerializer, NotificationSerializer, PollSerializer,
-    ReportSerializer
+    ReportSerializer,ReelCommentSerializer
 )
 from monetization.services import reward_engagement
 from notifications.services import create_notification
+
+
 
 logger = logging.getLogger(__name__)
 
@@ -344,6 +347,8 @@ class PostViewSet(viewsets.ModelViewSet):
     )
     
      return Response({'status': 'reported'})   
+
+
 class StoryViewSet(viewsets.ModelViewSet):
     queryset = Story.objects.filter(expires_at__gt=timezone.now())
     serializer_class = StorySerializer
@@ -356,6 +361,10 @@ class StoryViewSet(viewsets.ModelViewSet):
     def mine(self, request):
         stories = self.get_queryset().filter(user=request.user)
         return Response(StorySerializer(stories, many=True, context={'request': request}).data)
+
+
+
+
 
 class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = NotificationSerializer
@@ -422,3 +431,25 @@ class ReelViewSet(viewsets.ModelViewSet):
      reel.comments_count += 1
      reel.save(update_fields=['comments_count'])
      return Response({'status': 'commented', 'comments_count': reel.comments_count}) 
+
+
+    
+
+    @action(detail=True, methods=['post'])
+    def comment(self, request, pk=None):
+        reel = self.get_object()
+        text = request.data.get('text', '')
+        if not text.strip():
+            return Response({'error': 'Text required'}, status=400)
+        comment = ReelComment.objects.create(reel=reel, user=request.user, text=text)
+        reel.comments_count = ReelComment.objects.filter(reel=reel).count()
+        reel.save(update_fields=['comments_count'])
+        return Response(ReelCommentSerializer(comment).data, status=201)
+
+
+
+    @action(detail=True, methods=['get'])
+    def comments(self, request, pk=None):
+        reel = self.get_object()
+        reel_comments = ReelComment.objects.filter(reel=reel).order_by('-created_at')[:50]
+        return Response(ReelCommentSerializer(reel_comments, many=True).data)
