@@ -96,7 +96,7 @@ export default function Streaming() {
     } catch {}
   };
 
-  useEffect(() => { fetchStreams(); fetchSchedules(); }, [fetchStreams]);
+  useEffect(() => { fetchStreams(); fetchSchedules(); }, []);
 
   // ============================================================
   // ACTIONS
