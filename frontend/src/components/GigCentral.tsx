@@ -16,6 +16,8 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import WebRTCPrivateChat from './WebRTCPrivateChat';
 import { useTranslation } from 'react-i18next';
+  
+
 
 interface Gig {
   id: string;
@@ -130,7 +132,12 @@ export default function GigCentral() {
   
   // Stats
   const [stats, setStats] = useState({ totalGigs: 0, completedGigs: 0, totalEarned: '0', avgRating: 0 });
-
+   
+  // Negotiation state
+  const [negotiateGig, setNegotiateGig] = useState<string | null>(null);
+  const [proposalMessage, setProposalMessage] = useState('');
+  const [proposalBudget, setProposalBudget] = useState('');
+  
   // ============================================================
   // FETCH
   // ============================================================
@@ -140,8 +147,8 @@ export default function GigCentral() {
     try {
       const params = new URLSearchParams();
       if (activeTab !== 'mine') params.set('status', activeTab);
-if (activeTab === 'mine') params.set('mine', 'true');
-if (searchQuery) params.set('search', searchQuery);
+      if (activeTab === 'mine') params.set('mine', 'true');
+      if (searchQuery) params.set('search', searchQuery);
       
       const res = await api.get(`/gigs/gigs/?${params.toString()}`);
       setGigs(Array.isArray(res.data) ? res.data : res.data.results || []);
@@ -205,13 +212,19 @@ if (searchQuery) params.set('search', searchQuery);
     }
   };
 
-  const takeGig = async (id: string) => {
+  const requestGig = async (gigId: string) => {
     try {
-      await api.post(`/gigs/gigs/${id}/take/`);
-      toast.success(t('Gig accepted! You can now chat with the client.'));
+      await api.post(`/gigs/gigs/${gigId}/apply/`, {
+        message: proposalMessage || 'I would like to work on this gig.',
+        proposed_budget: proposalBudget || undefined,
+      });
+      toast.success('Proposal sent to client! 📨');
+      setNegotiateGig(null);
+      setProposalMessage('');
+      setProposalBudget('');
       fetchGigs();
     } catch (err: any) {
-      toast.error(err.response?.data?.error || t('Could not take gig'));
+      toast.error(err.response?.data?.error || 'Failed to send proposal');
     }
   };
 
@@ -268,9 +281,9 @@ if (searchQuery) params.set('search', searchQuery);
     if (!pfTitle) return toast.error(t('Title required'));
     const formData = new FormData();
     formData.append('title', pfTitle);
-formData.append('description', pfDesc);
-formData.append('link', pfLink);
-if (pfImage) formData.append('image', pfImage);
+    formData.append('description', pfDesc);
+    formData.append('link', pfLink);
+    if (pfImage) formData.append('image', pfImage);
     
     try {
       await api.post('/gigs/gigs/add_portfolio/', formData, {
@@ -585,7 +598,7 @@ if (pfImage) formData.append('image', pfImage);
                       </button>
                     )}
                     {gig.creator_name !== user?.username && gig.status === 'open' && (
-                      <button onClick={(e) => { e.stopPropagation(); takeGig(gig.id); }} className="btn-primary text-sm">
+                      <button onClick={(e) => { e.stopPropagation(); setNegotiateGig(gig.id); }} className="btn-primary text-sm">
                         <Zap size={14} className="mr-1" /> {t('Take Gig')}
                       </button>
                     )}
@@ -701,6 +714,23 @@ if (pfImage) formData.append('image', pfImage);
               </AnimatePresence>
             </motion.div>
           ))}
+        </div>
+      )}
+
+      {/* Negotiation Modal */}
+      {negotiateGig && (
+        <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" onClick={() => setNegotiateGig(null)}>
+          <div className="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl" onClick={e => e.stopPropagation()}>
+            <h3 className="font-bold text-lg mb-4">{t('Send Proposal')}</h3>
+            <textarea className="input-field mb-3" placeholder={t('Introduce yourself and explain why you\'re a good fit...')} 
+              value={proposalMessage} onChange={e => setProposalMessage(e.target.value)} rows={3} />
+            <input className="input-field mb-3" type="number" placeholder={t('Your proposed budget (optional)')} 
+              value={proposalBudget} onChange={e => setProposalBudget(e.target.value)} />
+            <div className="flex gap-2">
+              <button onClick={() => requestGig(negotiateGig)} className="btn-primary flex-1">{t('Send Proposal')}</button>
+              <button onClick={() => setNegotiateGig(null)} className="btn-ghost">{t('Cancel')}</button>
+            </div>
+          </div>
         </div>
       )}
 

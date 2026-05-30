@@ -40992,3 +40992,862 @@ INFO 2026-05-30 16:35:47,045 autoreload 15956 23724 Watching for file changes wi
 INFO 2026-05-30 16:35:51,983 server 15956 22304 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
 INFO 2026-05-30 16:35:51,984 server 15956 22304 Configuring endpoint tcp:port=8000:interface=127.0.0.1
 INFO 2026-05-30 16:35:51,989 server 15956 22304 Listening on TCP address 127.0.0.1:8000
+DEBUG 2026-05-30 16:37:21,404 http_protocol 15956 22304 HTTP b'GET' request for ['127.0.0.1', 56350]
+DEBUG 2026-05-30 16:37:21,410 http_protocol 15956 22304 HTTP b'GET' request for ['127.0.0.1', 54525]
+DEBUG 2026-05-30 16:37:21,694 http_protocol 15956 22304 HTTP 200 response started for ['127.0.0.1', 54525]
+DEBUG 2026-05-30 16:37:21,696 http_protocol 15956 22304 HTTP close for ['127.0.0.1', 54525]
+DEBUG 2026-05-30 16:37:21,698 http_protocol 15956 22304 HTTP response complete for ['127.0.0.1', 54525]
+INFO 2026-05-30 16:37:21,699 runserver 15956 22304 [mHTTP GET /api/streaming/schedules/upcoming/ 200 [0.29, 127.0.0.1:54525][0m
+DEBUG 2026-05-30 16:37:21,864 http_protocol 15956 22304 HTTP 200 response started for ['127.0.0.1', 56350]
+DEBUG 2026-05-30 16:37:21,865 http_protocol 15956 22304 HTTP close for ['127.0.0.1', 56350]
+DEBUG 2026-05-30 16:37:21,867 http_protocol 15956 22304 HTTP response complete for ['127.0.0.1', 56350]
+INFO 2026-05-30 16:37:21,867 runserver 15956 22304 [mHTTP GET /api/streaming/streams/?is_live=true 200 [0.46, 127.0.0.1:56350][0m
+DEBUG 2026-05-30 16:38:16,193 selector_events 16500 21332 Using selector: SelectSelector
+DEBUG 2026-05-30 16:38:24,288 selector_events 20128 13056 Using selector: SelectSelector
+INFO 2026-05-30 16:38:30,302 autoreload 20128 13056 Watching for file changes with StatReloader
+DEBUG 2026-05-30 16:38:42,562 selector_events 26456 12716 Using selector: SelectSelector
+DEBUG 2026-05-30 16:38:49,887 selector_events 2148 16508 Using selector: SelectSelector
+INFO 2026-05-30 16:38:54,482 autoreload 2148 16508 Watching for file changes with StatReloader
+INFO 2026-05-30 16:38:59,528 server 2148 15200 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2026-05-30 16:38:59,529 server 2148 15200 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2026-05-30 16:38:59,532 server 2148 15200 Listening on TCP address 127.0.0.1:8000
+DEBUG 2026-05-30 16:39:14,500 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:14,665 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:14,667 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:14,669 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 52511]
+INFO 2026-05-30 16:39:14,670 runserver 2148 15200 [mHTTP GET /api/users/profile/ 200 [0.17, 127.0.0.1:52511][0m
+DEBUG 2026-05-30 16:39:14,681 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:14,741 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:14,742 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:14,743 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 52511]
+INFO 2026-05-30 16:39:14,744 runserver 2148 15200 [mHTTP GET /api/users/profile/ 200 [0.06, 127.0.0.1:52511][0m
+DEBUG 2026-05-30 16:39:17,057 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:17,062 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,153 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,154 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,156 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 61323]
+INFO 2026-05-30 16:39:17,157 runserver 2148 15200 [mHTTP GET /api/content/notifications/ 200 [0.10, 127.0.0.1:61323][0m
+DEBUG 2026-05-30 16:39:17,167 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,240 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,241 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,242 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 61323]
+INFO 2026-05-30 16:39:17,244 runserver 2148 15200 [mHTTP GET /api/streaming/schedules/upcoming/ 200 [0.08, 127.0.0.1:61323][0m
+DEBUG 2026-05-30 16:39:17,257 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,290 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:17,291 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:17,292 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 52511]
+INFO 2026-05-30 16:39:17,292 runserver 2148 15200 [mHTTP GET /api/streaming/streams/?is_live=true 200 [0.24, 127.0.0.1:52511][0m
+DEBUG 2026-05-30 16:39:17,300 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:17,335 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,337 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,338 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 61323]
+INFO 2026-05-30 16:39:17,339 runserver 2148 15200 [mHTTP GET /api/content/notifications/ 200 [0.08, 127.0.0.1:61323][0m
+DEBUG 2026-05-30 16:39:17,347 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,392 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:17,395 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 52511]
+DEBUG 2026-05-30 16:39:17,397 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 52511]
+INFO 2026-05-30 16:39:17,399 runserver 2148 15200 [mHTTP GET /api/streaming/schedules/upcoming/ 200 [0.10, 127.0.0.1:52511][0m
+DEBUG 2026-05-30 16:39:17,506 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,507 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 61323]
+DEBUG 2026-05-30 16:39:17,509 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 61323]
+INFO 2026-05-30 16:39:17,510 runserver 2148 15200 [mHTTP GET /api/streaming/streams/?is_live=true 200 [0.16, 127.0.0.1:61323][0m
+DEBUG 2026-05-30 16:40:34,835 http_protocol 2148 15200 HTTP b'POST' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:40:34,927 Image 2148 19624 Importing BlpImagePlugin
+DEBUG 2026-05-30 16:40:34,934 Image 2148 19624 Importing BmpImagePlugin
+DEBUG 2026-05-30 16:40:34,935 Image 2148 19624 Importing BufrStubImagePlugin
+DEBUG 2026-05-30 16:40:34,939 Image 2148 19624 Importing CurImagePlugin
+DEBUG 2026-05-30 16:40:34,943 Image 2148 19624 Importing DcxImagePlugin
+DEBUG 2026-05-30 16:40:34,950 Image 2148 19624 Importing DdsImagePlugin
+DEBUG 2026-05-30 16:40:34,968 Image 2148 19624 Importing EpsImagePlugin
+DEBUG 2026-05-30 16:40:34,973 Image 2148 19624 Importing FitsImagePlugin
+DEBUG 2026-05-30 16:40:34,977 Image 2148 19624 Importing FliImagePlugin
+DEBUG 2026-05-30 16:40:34,981 Image 2148 19624 Importing FpxImagePlugin
+DEBUG 2026-05-30 16:40:34,987 Image 2148 19624 Image: failed to import FpxImagePlugin: No module named 'olefile'
+DEBUG 2026-05-30 16:40:34,988 Image 2148 19624 Importing FtexImagePlugin
+DEBUG 2026-05-30 16:40:34,993 Image 2148 19624 Importing GbrImagePlugin
+DEBUG 2026-05-30 16:40:34,996 Image 2148 19624 Importing GifImagePlugin
+DEBUG 2026-05-30 16:40:34,997 Image 2148 19624 Importing GribStubImagePlugin
+DEBUG 2026-05-30 16:40:35,001 Image 2148 19624 Importing Hdf5StubImagePlugin
+DEBUG 2026-05-30 16:40:35,005 Image 2148 19624 Importing IcnsImagePlugin
+DEBUG 2026-05-30 16:40:35,029 Image 2148 19624 Importing IcoImagePlugin
+DEBUG 2026-05-30 16:40:35,033 Image 2148 19624 Importing ImImagePlugin
+DEBUG 2026-05-30 16:40:35,038 Image 2148 19624 Importing ImtImagePlugin
+DEBUG 2026-05-30 16:40:35,043 Image 2148 19624 Importing IptcImagePlugin
+DEBUG 2026-05-30 16:40:35,047 Image 2148 19624 Importing JpegImagePlugin
+DEBUG 2026-05-30 16:40:35,048 Image 2148 19624 Importing Jpeg2KImagePlugin
+DEBUG 2026-05-30 16:40:35,050 Image 2148 19624 Importing McIdasImagePlugin
+DEBUG 2026-05-30 16:40:35,054 Image 2148 19624 Importing MicImagePlugin
+DEBUG 2026-05-30 16:40:35,065 Image 2148 19624 Image: failed to import MicImagePlugin: No module named 'olefile'
+DEBUG 2026-05-30 16:40:35,066 Image 2148 19624 Importing MpegImagePlugin
+DEBUG 2026-05-30 16:40:35,071 Image 2148 19624 Importing MpoImagePlugin
+DEBUG 2026-05-30 16:40:35,082 Image 2148 19624 Importing MspImagePlugin
+DEBUG 2026-05-30 16:40:35,086 Image 2148 19624 Importing PalmImagePlugin
+DEBUG 2026-05-30 16:40:35,098 Image 2148 19624 Importing PcdImagePlugin
+DEBUG 2026-05-30 16:40:35,102 Image 2148 19624 Importing PcxImagePlugin
+DEBUG 2026-05-30 16:40:35,103 Image 2148 19624 Importing PdfImagePlugin
+DEBUG 2026-05-30 16:40:35,133 Image 2148 19624 Importing PixarImagePlugin
+DEBUG 2026-05-30 16:40:35,137 Image 2148 19624 Importing PngImagePlugin
+DEBUG 2026-05-30 16:40:35,138 Image 2148 19624 Importing PpmImagePlugin
+DEBUG 2026-05-30 16:40:35,139 Image 2148 19624 Importing PsdImagePlugin
+DEBUG 2026-05-30 16:40:35,144 Image 2148 19624 Importing QoiImagePlugin
+DEBUG 2026-05-30 16:40:35,148 Image 2148 19624 Importing SgiImagePlugin
+DEBUG 2026-05-30 16:40:35,153 Image 2148 19624 Importing SpiderImagePlugin
+DEBUG 2026-05-30 16:40:35,158 Image 2148 19624 Importing SunImagePlugin
+DEBUG 2026-05-30 16:40:35,162 Image 2148 19624 Importing TgaImagePlugin
+DEBUG 2026-05-30 16:40:35,166 Image 2148 19624 Importing TiffImagePlugin
+DEBUG 2026-05-30 16:40:35,168 Image 2148 19624 Importing WebPImagePlugin
+DEBUG 2026-05-30 16:40:35,183 Image 2148 19624 Importing WmfImagePlugin
+DEBUG 2026-05-30 16:40:35,188 Image 2148 19624 Importing XbmImagePlugin
+DEBUG 2026-05-30 16:40:35,197 Image 2148 19624 Importing XpmImagePlugin
+DEBUG 2026-05-30 16:40:35,202 Image 2148 19624 Importing XVThumbImagePlugin
+DEBUG 2026-05-30 16:40:35,281 http_protocol 2148 15200 HTTP 201 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:40:35,282 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:40:35,283 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:40:35,284 runserver 2148 15200 [mHTTP POST /api/streaming/streams/ 201 [0.45, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:40:35,654 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 59110]
+DEBUG 2026-05-30 16:40:35,814 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:40:35,906 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:40:35,907 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:40:35,908 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:40:35,910 runserver 2148 15200 [mHTTP GET /api/streaming/streams/?is_live=true 200 [0.10, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:40:36,027 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 59110]
+DEBUG 2026-05-30 16:40:36,032 http_protocol 2148 15200 HTTP response chunk for ['127.0.0.1', 59110]
+DEBUG 2026-05-30 16:40:36,033 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 59110]
+DEBUG 2026-05-30 16:40:36,034 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 59110]
+INFO 2026-05-30 16:40:36,036 runserver 2148 15200 [mHTTP GET /media/streams/thumbnails/8e3a478979def9f070eeb67f3a181d34_XTRnDZv.jpg 200 [0.38, 127.0.0.1:59110][0m
+DEBUG 2026-05-30 16:41:13,728 http_protocol 2148 15200 HTTP b'POST' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:14,231 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:14,232 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:14,232 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:14,233 runserver 2148 15200 [mHTTP POST /api/auth/token/ 200 [0.51, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:14,244 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:14,274 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:14,275 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:14,275 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:14,276 runserver 2148 15200 [mHTTP GET /api/users/profile/ 200 [0.03, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:14,281 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:14,314 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:14,314 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:14,315 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:14,315 runserver 2148 15200 [mHTTP GET /api/users/profile/ 200 [0.03, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:22,664 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:22,668 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:22,741 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:22,743 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:22,744 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:22,766 runserver 2148 15200 [mHTTP GET /api/content/notifications/ 200 [0.10, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:22,776 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:22,790 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:22,791 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:22,792 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 64951]
+INFO 2026-05-30 16:41:22,792 runserver 2148 15200 [mHTTP GET /api/monetization/ads/serve_ad/ 200 [0.12, 127.0.0.1:64951][0m
+DEBUG 2026-05-30 16:41:22,799 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:22,864 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:22,871 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:22,872 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 64951]
+INFO 2026-05-30 16:41:22,873 runserver 2148 15200 [mHTTP GET /api/content/stories/ 200 [0.07, 127.0.0.1:64951][0m
+DEBUG 2026-05-30 16:41:22,881 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:22,980 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55569]
+DEBUG 2026-05-30 16:41:22,996 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 61975]
+DEBUG 2026-05-30 16:41:23,005 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 54529]
+DEBUG 2026-05-30 16:41:23,055 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:23,056 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:23,062 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 64951]
+INFO 2026-05-30 16:41:23,065 runserver 2148 15200 [mHTTP GET /api/users/suggested/ 200 [0.18, 127.0.0.1:64951][0m
+DEBUG 2026-05-30 16:41:23,084 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:23,188 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 61975]
+DEBUG 2026-05-30 16:41:23,189 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 61975]
+DEBUG 2026-05-30 16:41:23,192 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 61975]
+INFO 2026-05-30 16:41:23,201 runserver 2148 15200 [mHTTP GET /api/monetization/ads/serve_ad/ 200 [0.21, 127.0.0.1:61975][0m
+DEBUG 2026-05-30 16:41:23,211 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55569]
+DEBUG 2026-05-30 16:41:23,215 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55569]
+DEBUG 2026-05-30 16:41:23,217 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55569]
+INFO 2026-05-30 16:41:23,221 runserver 2148 15200 [mHTTP GET /api/content/notifications/ 200 [0.24, 127.0.0.1:55569][0m
+DEBUG 2026-05-30 16:41:23,245 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 54529]
+DEBUG 2026-05-30 16:41:23,252 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 54529]
+DEBUG 2026-05-30 16:41:23,255 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 54529]
+INFO 2026-05-30 16:41:23,258 runserver 2148 15200 [mHTTP GET /api/content/stories/ 200 [0.25, 127.0.0.1:54529][0m
+DEBUG 2026-05-30 16:41:23,301 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:23,304 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:23,308 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 64951]
+INFO 2026-05-30 16:41:23,308 runserver 2148 15200 [mHTTP GET /api/users/suggested/ 200 [0.22, 127.0.0.1:64951][0m
+DEBUG 2026-05-30 16:41:23,412 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,413 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,414 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:23,415 runserver 2148 15200 [mHTTP GET /api/content/posts/?page=1 200 [0.64, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:23,490 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,530 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,531 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,532 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:23,533 runserver 2148 15200 [mHTTP GET /api/monetization/ads/serve_ad/ 200 [0.04, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:23,542 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,576 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,577 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,578 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:23,578 runserver 2148 15200 [mHTTP GET /api/monetization/ads/serve_ad/ 200 [0.04, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:23,584 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,647 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,648 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,649 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:23,651 runserver 2148 15200 [mHTTP GET /api/monetization/ads/serve_ad/ 200 [0.07, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:23,658 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,712 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,714 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,715 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:23,716 runserver 2148 15200 [mHTTP GET /api/monetization/ads/serve_ad/ 200 [0.06, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:23,722 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,769 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,770 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,771 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:23,772 runserver 2148 15200 [mHTTP GET /api/monetization/ads/serve_ad/ 200 [0.05, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:23,779 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,829 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,831 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,832 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:23,833 runserver 2148 15200 [mHTTP GET /api/monetization/ads/serve_ad/ 200 [0.05, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:23,839 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,885 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,886 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,887 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:23,888 runserver 2148 15200 [mHTTP GET /api/monetization/ads/serve_ad/ 200 [0.05, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:23,894 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,945 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,947 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:23,948 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:23,948 runserver 2148 15200 [mHTTP GET /api/monetization/ads/serve_ad/ 200 [0.05, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:27,051 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:27,055 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:27,132 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:27,133 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:27,136 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 64951]
+INFO 2026-05-30 16:41:27,137 runserver 2148 15200 [mHTTP GET /api/streaming/schedules/upcoming/ 200 [0.08, 127.0.0.1:64951][0m
+DEBUG 2026-05-30 16:41:27,143 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:27,154 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:27,155 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:27,156 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:27,157 runserver 2148 15200 [mHTTP GET /api/streaming/streams/?is_live=true 200 [0.11, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:27,162 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:27,208 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:27,212 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 64951]
+DEBUG 2026-05-30 16:41:27,213 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 64951]
+INFO 2026-05-30 16:41:27,222 runserver 2148 15200 [mHTTP GET /api/streaming/schedules/upcoming/ 200 [0.08, 127.0.0.1:64951][0m
+DEBUG 2026-05-30 16:41:27,250 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:27,252 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:27,253 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:27,254 runserver 2148 15200 [mHTTP GET /api/streaming/streams/?is_live=true 200 [0.09, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:41,241 http_protocol 2148 15200 HTTP b'POST' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:41,282 PngImagePlugin 2148 18480 STREAM b'IHDR' 16 13
+DEBUG 2026-05-30 16:41:41,283 PngImagePlugin 2148 18480 STREAM b'sRGB' 41 1
+DEBUG 2026-05-30 16:41:41,284 PngImagePlugin 2148 18480 STREAM b'gAMA' 54 4
+DEBUG 2026-05-30 16:41:41,284 PngImagePlugin 2148 18480 STREAM b'pHYs' 70 9
+DEBUG 2026-05-30 16:41:41,285 PngImagePlugin 2148 18480 STREAM b'IDAT' 91 26555
+DEBUG 2026-05-30 16:41:41,342 http_protocol 2148 15200 HTTP 201 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:41,343 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:41,345 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:41,345 runserver 2148 15200 [mHTTP POST /api/streaming/streams/ 201 [0.10, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:41:41,687 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 62070]
+DEBUG 2026-05-30 16:41:41,729 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 62070]
+DEBUG 2026-05-30 16:41:41,731 http_protocol 2148 15200 HTTP response chunk for ['127.0.0.1', 62070]
+DEBUG 2026-05-30 16:41:41,732 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 62070]
+DEBUG 2026-05-30 16:41:41,733 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 62070]
+INFO 2026-05-30 16:41:41,734 runserver 2148 15200 [mHTTP GET /media/streams/thumbnails/Screenshot_2026-03-25_052023_CDO6KIN.png 200 [0.05, 127.0.0.1:62070][0m
+DEBUG 2026-05-30 16:41:41,864 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:41,922 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:41,923 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55909]
+DEBUG 2026-05-30 16:41:41,924 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55909]
+INFO 2026-05-30 16:41:41,925 runserver 2148 15200 [mHTTP GET /api/streaming/streams/?is_live=true 200 [0.06, 127.0.0.1:55909][0m
+DEBUG 2026-05-30 16:42:49,556 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:49,679 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:49,681 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:49,682 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 53457]
+INFO 2026-05-30 16:42:49,683 runserver 2148 15200 [mHTTP GET /api/content/reels/ 200 [0.13, 127.0.0.1:53457][0m
+DEBUG 2026-05-30 16:42:49,688 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:49,855 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:49,856 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:49,857 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 53457]
+INFO 2026-05-30 16:42:49,858 runserver 2148 15200 [mHTTP GET /api/content/reels/ 200 [0.17, 127.0.0.1:53457][0m
+DEBUG 2026-05-30 16:42:49,865 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:50,011 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:50,012 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:50,012 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 53457]
+INFO 2026-05-30 16:42:50,013 runserver 2148 15200 [mHTTP GET /api/content/reels/ 200 [0.15, 127.0.0.1:53457][0m
+DEBUG 2026-05-30 16:42:52,087 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:52,239 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:52,240 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:42:52,241 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 53457]
+INFO 2026-05-30 16:42:52,242 runserver 2148 15200 [mHTTP GET /api/content/reels/eaebefbb-180b-49e2-ac98-4abce5d0176a/comments/ 200 [0.16, 127.0.0.1:53457][0m
+DEBUG 2026-05-30 16:43:00,002 http_protocol 2148 15200 HTTP b'POST' request for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:43:00,151 http_protocol 2148 15200 HTTP 201 response started for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:43:00,153 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:43:00,154 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 53457]
+INFO 2026-05-30 16:43:00,155 runserver 2148 15200 [mHTTP POST /api/content/reels/eaebefbb-180b-49e2-ac98-4abce5d0176a/reply_comment/ 201 [0.15, 127.0.0.1:53457][0m
+DEBUG 2026-05-30 16:43:00,164 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:43:00,367 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:43:00,368 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:43:00,369 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 53457]
+INFO 2026-05-30 16:43:00,370 runserver 2148 15200 [mHTTP GET /api/content/reels/eaebefbb-180b-49e2-ac98-4abce5d0176a/comments/ 200 [0.21, 127.0.0.1:53457][0m
+DEBUG 2026-05-30 16:43:07,884 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:43:08,051 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:43:08,052 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 53457]
+DEBUG 2026-05-30 16:43:08,053 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 53457]
+INFO 2026-05-30 16:43:08,054 runserver 2148 15200 [mHTTP GET /api/content/reels/eaebefbb-180b-49e2-ac98-4abce5d0176a/comments/ 200 [0.17, 127.0.0.1:53457][0m
+DEBUG 2026-05-30 16:44:44,743 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:44,745 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:44,780 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:44,786 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:44,787 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 57992]
+INFO 2026-05-30 16:44:44,788 runserver 2148 15200 [mHTTP GET /api/streaming/schedules/upcoming/ 200 [0.04, 127.0.0.1:57992][0m
+DEBUG 2026-05-30 16:44:44,795 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:44,843 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:44,844 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:44,844 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 57992]
+INFO 2026-05-30 16:44:44,845 runserver 2148 15200 [mHTTP GET /api/streaming/schedules/upcoming/ 200 [0.05, 127.0.0.1:57992][0m
+DEBUG 2026-05-30 16:44:44,848 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:44,849 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:44,850 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:44:44,850 runserver 2148 15200 [mHTTP GET /api/streaming/streams/?is_live=true 200 [0.11, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:44:44,853 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:44,950 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:44,951 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:44,951 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:44:44,952 runserver 2148 15200 [mHTTP GET /api/streaming/streams/?is_live=true 200 [0.10, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:44:46,318 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:46,320 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:44:46,321 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:46,381 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:44:46,381 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:44:46,382 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 51334]
+INFO 2026-05-30 16:44:46,382 runserver 2148 15200 [mHTTP GET /api/tutoring/sessions/my_certificates/ 200 [0.06, 127.0.0.1:51334][0m
+DEBUG 2026-05-30 16:44:46,387 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:46,387 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:46,388 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 57992]
+INFO 2026-05-30 16:44:46,418 runserver 2148 15200 [mHTTP GET /api/tutoring/profiles/ 200 [0.10, 127.0.0.1:57992][0m
+DEBUG 2026-05-30 16:44:46,424 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:44:46,459 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:46,482 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:46,484 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:46,485 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:44:46,485 runserver 2148 15200 [mHTTP GET /api/tutoring/sessions/? 200 [0.17, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:44:46,489 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:46,537 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:44:46,538 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:44:46,538 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 51334]
+INFO 2026-05-30 16:44:46,539 runserver 2148 15200 [mHTTP GET /api/tutoring/sessions/my_certificates/ 200 [0.11, 127.0.0.1:51334][0m
+DEBUG 2026-05-30 16:44:46,543 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:46,544 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:46,545 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 57992]
+INFO 2026-05-30 16:44:46,547 runserver 2148 15200 [mHTTP GET /api/tutoring/profiles/ 200 [0.09, 127.0.0.1:57992][0m
+DEBUG 2026-05-30 16:44:46,585 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:46,588 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:46,588 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:44:46,589 runserver 2148 15200 [mHTTP GET /api/tutoring/sessions/? 200 [0.10, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:44:49,719 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:49,904 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:49,905 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:49,906 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:44:49,906 runserver 2148 15200 [mHTTP GET /api/groupchat/groups/ 200 [0.19, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:44:49,912 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:50,107 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:50,108 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:50,109 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 57992]
+INFO 2026-05-30 16:44:50,110 runserver 2148 15200 [mHTTP GET /api/groupchat/groups/ 200 [0.20, 127.0.0.1:57992][0m
+DEBUG 2026-05-30 16:44:53,478 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:53,482 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:53,654 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:53,655 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:53,658 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 57992]
+INFO 2026-05-30 16:44:53,659 runserver 2148 15200 [mHTTP GET /api/groupchat/groups/1d6473a1-7ce1-4284-9838-7f90e91f486e/messages/ 200 [0.18, 127.0.0.1:57992][0m
+DEBUG 2026-05-30 16:44:53,820 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:53,822 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:53,823 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:44:53,823 runserver 2148 15200 [mHTTP GET /api/groupchat/groups/ 200 [0.34, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:44:56,844 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:56,849 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:56,946 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:56,950 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:56,954 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 57992]
+INFO 2026-05-30 16:44:56,955 runserver 2148 15200 [mHTTP GET /api/marketplace/categories/ 200 [0.11, 127.0.0.1:57992][0m
+DEBUG 2026-05-30 16:44:56,966 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:57,022 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:57,023 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:57,024 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:44:57,025 runserver 2148 15200 [mHTTP GET /api/marketplace/products/?ordering=-created_at 200 [0.18, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:44:57,032 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:57,186 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:57,210 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:44:57,225 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 57992]
+INFO 2026-05-30 16:44:57,257 runserver 2148 15200 [mHTTP GET /api/marketplace/categories/ 200 [0.29, 127.0.0.1:57992][0m
+DEBUG 2026-05-30 16:44:57,355 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:57,356 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:44:57,357 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:44:57,357 runserver 2148 15200 [mHTTP GET /api/marketplace/products/?ordering=-created_at 200 [0.33, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:45:00,385 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:00,388 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:45:00,390 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:45:00,513 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:45:00,514 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:45:00,515 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 51334]
+INFO 2026-05-30 16:45:00,516 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/my_badges/ 200 [0.13, 127.0.0.1:51334][0m
+DEBUG 2026-05-30 16:45:00,525 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:45:00,536 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:45:00,555 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:45:00,557 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 57992]
+INFO 2026-05-30 16:45:00,562 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/portfolio/ 200 [0.17, 127.0.0.1:57992][0m
+DEBUG 2026-05-30 16:45:00,580 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:00,583 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:00,585 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:45:00,586 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/?status=open 200 [0.20, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:45:00,589 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:45:00,597 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:00,724 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:45:00,740 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 51334]
+DEBUG 2026-05-30 16:45:00,743 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 51334]
+INFO 2026-05-30 16:45:00,745 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/my_badges/ 200 [0.22, 127.0.0.1:51334][0m
+DEBUG 2026-05-30 16:45:00,825 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:45:00,827 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 57992]
+DEBUG 2026-05-30 16:45:00,829 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 57992]
+INFO 2026-05-30 16:45:00,830 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/portfolio/ 200 [0.24, 127.0.0.1:57992][0m
+DEBUG 2026-05-30 16:45:00,890 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:00,892 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:00,894 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:45:00,895 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/?status=open 200 [0.30, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:45:54,760 http_protocol 2148 15200 HTTP b'OPTIONS' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:54,767 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:54,768 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:54,770 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:45:54,771 runserver 2148 15200 [mHTTP OPTIONS /api/gigs/gigs/?status=in_progress 200 [0.01, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:45:54,783 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:54,940 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:54,942 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:54,943 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:45:54,944 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/?status=in_progress 200 [0.16, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:45:59,827 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:59,922 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:59,924 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:45:59,925 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:45:59,925 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/?status=open 200 [0.10, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:03,179 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:03,265 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:03,266 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:03,267 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:03,268 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/?status=in_progress 200 [0.09, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:04,883 http_protocol 2148 15200 HTTP b'OPTIONS' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:04,889 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:04,890 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:04,891 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:04,892 runserver 2148 15200 [mHTTP OPTIONS /api/gigs/gigs/?status=completed 200 [0.01, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:04,902 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:05,039 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:05,040 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:05,041 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:05,042 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/?status=completed 200 [0.14, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:07,221 http_protocol 2148 15200 HTTP b'OPTIONS' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:07,225 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:07,226 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:07,227 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:07,228 runserver 2148 15200 [mHTTP OPTIONS /api/gigs/gigs/?mine=true 200 [0.01, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:07,266 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:07,378 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:07,379 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:07,380 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:07,381 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/?mine=true 200 [0.11, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:21,123 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:21,241 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:21,242 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:21,243 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:21,244 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/?status=open 200 [0.12, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:24,901 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:25,025 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:25,026 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:25,027 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:25,028 runserver 2148 15200 [mHTTP GET /api/gigs/gigs/?mine=true 200 [0.13, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:26,740 http_protocol 2148 15200 HTTP b'OPTIONS' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:26,744 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:26,745 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:26,746 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:26,747 runserver 2148 15200 [mHTTP OPTIONS /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/ 200 [0.01, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:26,752 http_protocol 2148 15200 HTTP b'OPTIONS' request for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:26,783 http_protocol 2148 15200 HTTP 200 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:26,794 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:26,804 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:26,805 runserver 2148 15200 [mHTTP OPTIONS /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/ 200 [0.05, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:26,810 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+ERROR 2026-05-30 16:46:26,986 log 2148 24992 Internal Server Error: /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/
+Traceback (most recent call last):
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 504, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 559, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\leno\sasl\backend\gigs\views.py", line 233, in chat
+    messages = GigChatMessage.objects.filter(gig=gig).order_by('created_at')
+               ^^^^^^^^^^^^^^
+NameError: name 'GigChatMessage' is not defined
+DEBUG 2026-05-30 16:46:27,005 http_protocol 2148 15200 HTTP 500 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:27,006 http_protocol 2148 15200 HTTP response chunk for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:27,007 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:27,008 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+ERROR 2026-05-30 16:46:27,009 runserver 2148 15200 [35;1mHTTP GET /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/ 500 [0.20, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:27,026 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:27,058 runserver 2148 15200 WebSocket HANDSHAKING /ws/video/gig-0b1bf838-9663-4f38-9d17-4a4de95189f8/ [127.0.0.1:64168]
+DEBUG 2026-05-30 16:46:27,060 http_protocol 2148 15200 Upgraded connection ['127.0.0.1', 64168] to WebSocket
+DEBUG 2026-05-30 16:46:27,069 ws_protocol 2148 15200 WebSocket ['127.0.0.1', 64168] open and established
+INFO 2026-05-30 16:46:27,071 runserver 2148 15200 WebSocket CONNECT /ws/video/gig-0b1bf838-9663-4f38-9d17-4a4de95189f8/ [127.0.0.1:64168]
+DEBUG 2026-05-30 16:46:27,072 ws_protocol 2148 15200 WebSocket ['127.0.0.1', 64168] accepted by application
+ERROR 2026-05-30 16:46:27,269 log 2148 24992 Internal Server Error: /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/
+Traceback (most recent call last):
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 504, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 559, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\leno\sasl\backend\gigs\views.py", line 233, in chat
+    messages = GigChatMessage.objects.filter(gig=gig).order_by('created_at')
+               ^^^^^^^^^^^^^^
+NameError: name 'GigChatMessage' is not defined
+DEBUG 2026-05-30 16:46:27,288 http_protocol 2148 15200 HTTP 500 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:27,289 http_protocol 2148 15200 HTTP response chunk for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:27,290 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:27,292 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+ERROR 2026-05-30 16:46:27,293 runserver 2148 15200 [35;1mHTTP GET /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/ 500 [0.27, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:32,250 ws_protocol 2148 15200 WebSocket closed for ['127.0.0.1', 64168]
+INFO 2026-05-30 16:46:32,251 runserver 2148 15200 WebSocket DISCONNECT /ws/video/gig-0b1bf838-9663-4f38-9d17-4a4de95189f8/ [127.0.0.1:64168]
+DEBUG 2026-05-30 16:46:37,407 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+ERROR 2026-05-30 16:46:37,566 log 2148 24992 Internal Server Error: /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/
+Traceback (most recent call last):
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 504, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 559, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\leno\sasl\backend\gigs\views.py", line 233, in chat
+    messages = GigChatMessage.objects.filter(gig=gig).order_by('created_at')
+               ^^^^^^^^^^^^^^
+NameError: name 'GigChatMessage' is not defined
+DEBUG 2026-05-30 16:46:37,579 http_protocol 2148 15200 HTTP 500 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:37,580 http_protocol 2148 15200 HTTP response chunk for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:37,581 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:37,582 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+ERROR 2026-05-30 16:46:37,583 runserver 2148 15200 [35;1mHTTP GET /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/ 500 [0.18, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:37,589 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 63626]
+INFO 2026-05-30 16:46:37,919 runserver 2148 15200 WebSocket HANDSHAKING /ws/video/gig-0b1bf838-9663-4f38-9d17-4a4de95189f8/ [127.0.0.1:56635]
+DEBUG 2026-05-30 16:46:37,920 http_protocol 2148 15200 Upgraded connection ['127.0.0.1', 56635] to WebSocket
+DEBUG 2026-05-30 16:46:37,925 ws_protocol 2148 15200 WebSocket ['127.0.0.1', 56635] open and established
+INFO 2026-05-30 16:46:37,927 runserver 2148 15200 WebSocket CONNECT /ws/video/gig-0b1bf838-9663-4f38-9d17-4a4de95189f8/ [127.0.0.1:56635]
+DEBUG 2026-05-30 16:46:37,928 ws_protocol 2148 15200 WebSocket ['127.0.0.1', 56635] accepted by application
+ERROR 2026-05-30 16:46:38,066 log 2148 24992 Internal Server Error: /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/
+Traceback (most recent call last):
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 504, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 559, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\leno\sasl\backend\gigs\views.py", line 233, in chat
+    messages = GigChatMessage.objects.filter(gig=gig).order_by('created_at')
+               ^^^^^^^^^^^^^^
+NameError: name 'GigChatMessage' is not defined
+DEBUG 2026-05-30 16:46:38,085 http_protocol 2148 15200 HTTP 500 response started for ['127.0.0.1', 63626]
+DEBUG 2026-05-30 16:46:38,086 http_protocol 2148 15200 HTTP response chunk for ['127.0.0.1', 63626]
+DEBUG 2026-05-30 16:46:38,087 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 63626]
+DEBUG 2026-05-30 16:46:38,088 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 63626]
+ERROR 2026-05-30 16:46:38,090 runserver 2148 15200 [35;1mHTTP GET /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/ 500 [0.50, 127.0.0.1:63626][0m
+DEBUG 2026-05-30 16:46:45,936 ws_protocol 2148 15200 WebSocket incoming frame on ['127.0.0.1', 56635]
+DEBUG 2026-05-30 16:46:45,938 http_protocol 2148 15200 HTTP b'POST' request for ['127.0.0.1', 63626]
+DEBUG 2026-05-30 16:46:45,941 ws_protocol 2148 15200 Sent WebSocket packet to client for ['127.0.0.1', 56635]
+ERROR 2026-05-30 16:46:46,115 log 2148 24992 Internal Server Error: /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/
+Traceback (most recent call last):
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 504, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 559, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\leno\sasl\backend\gigs\views.py", line 236, in chat
+    msg = GigChatMessage.objects.create(
+          ^^^^^^^^^^^^^^
+NameError: name 'GigChatMessage' is not defined
+DEBUG 2026-05-30 16:46:46,130 http_protocol 2148 15200 HTTP 500 response started for ['127.0.0.1', 63626]
+DEBUG 2026-05-30 16:46:46,131 http_protocol 2148 15200 HTTP response chunk for ['127.0.0.1', 63626]
+DEBUG 2026-05-30 16:46:46,132 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 63626]
+DEBUG 2026-05-30 16:46:46,133 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 63626]
+ERROR 2026-05-30 16:46:46,134 runserver 2148 15200 [35;1mHTTP POST /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/ 500 [0.20, 127.0.0.1:63626][0m
+DEBUG 2026-05-30 16:46:48,599 ws_protocol 2148 15200 WebSocket closed for ['127.0.0.1', 56635]
+INFO 2026-05-30 16:46:48,600 runserver 2148 15200 WebSocket DISCONNECT /ws/video/gig-0b1bf838-9663-4f38-9d17-4a4de95189f8/ [127.0.0.1:56635]
+DEBUG 2026-05-30 16:46:50,221 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 63626]
+ERROR 2026-05-30 16:46:50,372 log 2148 24992 Internal Server Error: /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/
+Traceback (most recent call last):
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 504, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 559, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\leno\sasl\backend\gigs\views.py", line 233, in chat
+    messages = GigChatMessage.objects.filter(gig=gig).order_by('created_at')
+               ^^^^^^^^^^^^^^
+NameError: name 'GigChatMessage' is not defined
+DEBUG 2026-05-30 16:46:50,391 http_protocol 2148 15200 HTTP 500 response started for ['127.0.0.1', 63626]
+DEBUG 2026-05-30 16:46:50,398 http_protocol 2148 15200 HTTP response chunk for ['127.0.0.1', 63626]
+DEBUG 2026-05-30 16:46:50,401 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 63626]
+DEBUG 2026-05-30 16:46:50,417 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 63626]
+ERROR 2026-05-30 16:46:50,426 runserver 2148 15200 [35;1mHTTP GET /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/ 500 [0.21, 127.0.0.1:63626][0m
+DEBUG 2026-05-30 16:46:50,434 http_protocol 2148 15200 HTTP b'GET' request for ['127.0.0.1', 55407]
+INFO 2026-05-30 16:46:50,579 runserver 2148 15200 WebSocket HANDSHAKING /ws/video/gig-0b1bf838-9663-4f38-9d17-4a4de95189f8/ [127.0.0.1:62964]
+DEBUG 2026-05-30 16:46:50,582 http_protocol 2148 15200 Upgraded connection ['127.0.0.1', 62964] to WebSocket
+DEBUG 2026-05-30 16:46:50,589 ws_protocol 2148 15200 WebSocket ['127.0.0.1', 62964] open and established
+INFO 2026-05-30 16:46:50,590 runserver 2148 15200 WebSocket CONNECT /ws/video/gig-0b1bf838-9663-4f38-9d17-4a4de95189f8/ [127.0.0.1:62964]
+DEBUG 2026-05-30 16:46:50,591 ws_protocol 2148 15200 WebSocket ['127.0.0.1', 62964] accepted by application
+ERROR 2026-05-30 16:46:50,727 log 2148 24992 Internal Server Error: /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/
+Traceback (most recent call last):
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\exception.py", line 42, in inner
+    response = await get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 555, in thread_handler
+    raise exc_info[1]
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\core\handlers\base.py", line 253, in _get_response_async
+    response = await wrapped_callback(
+               ^^^^^^^^^^^^^^^^^^^^^^^
+        request, *callback_args, **callback_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 504, in __call__
+    ret = await asyncio.shield(exec_coro)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\current_thread_executor.py", line 40, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\asgiref\sync.py", line 559, in thread_handler
+    return func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\leno\Miniconda3\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\leno\sasl\backend\gigs\views.py", line 233, in chat
+    messages = GigChatMessage.objects.filter(gig=gig).order_by('created_at')
+               ^^^^^^^^^^^^^^
+NameError: name 'GigChatMessage' is not defined
+DEBUG 2026-05-30 16:46:50,751 http_protocol 2148 15200 HTTP 500 response started for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:50,752 http_protocol 2148 15200 HTTP response chunk for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:50,753 http_protocol 2148 15200 HTTP close for ['127.0.0.1', 55407]
+DEBUG 2026-05-30 16:46:50,755 http_protocol 2148 15200 HTTP response complete for ['127.0.0.1', 55407]
+ERROR 2026-05-30 16:46:50,755 runserver 2148 15200 [35;1mHTTP GET /api/gigs/gigs/0b1bf838-9663-4f38-9d17-4a4de95189f8/chat/ 500 [0.32, 127.0.0.1:55407][0m
+DEBUG 2026-05-30 16:46:52,938 ws_protocol 2148 15200 WebSocket closed for ['127.0.0.1', 62964]
+INFO 2026-05-30 16:46:52,939 runserver 2148 15200 WebSocket DISCONNECT /ws/video/gig-0b1bf838-9663-4f38-9d17-4a4de95189f8/ [127.0.0.1:62964]
+INFO 2026-05-30 16:54:55,477 autoreload 2148 16508 C:\Users\leno\sasl\backend\content\views.py changed, reloading.
+DEBUG 2026-05-30 16:54:57,571 selector_events 24112 10160 Using selector: SelectSelector
+INFO 2026-05-30 16:55:01,354 autoreload 24112 10160 Watching for file changes with StatReloader
+INFO 2026-05-30 16:56:08,787 autoreload 24112 10160 C:\Users\leno\sasl\backend\content\views.py changed, reloading.
+DEBUG 2026-05-30 16:56:12,103 selector_events 17416 9952 Using selector: SelectSelector
+INFO 2026-05-30 16:56:18,713 autoreload 17416 9952 Watching for file changes with StatReloader
+INFO 2026-05-30 17:17:49,831 autoreload 17416 9952 C:\Users\leno\sasl\backend\content\models.py changed, reloading.
+DEBUG 2026-05-30 17:17:57,725 selector_events 26220 26416 Using selector: SelectSelector
+INFO 2026-05-30 17:18:04,047 autoreload 26220 26416 Watching for file changes with StatReloader
+INFO 2026-05-30 17:18:09,126 server 26220 9088 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2026-05-30 17:18:09,127 server 26220 9088 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2026-05-30 17:18:09,130 server 26220 9088 Listening on TCP address 127.0.0.1:8000
+DEBUG 2026-05-30 17:21:19,242 selector_events 16924 9136 Using selector: SelectSelector
+DEBUG 2026-05-30 17:21:28,367 selector_events 17060 17164 Using selector: SelectSelector
+DEBUG 2026-05-30 17:21:40,049 selector_events 152 24252 Using selector: SelectSelector
+DEBUG 2026-05-30 17:21:47,610 selector_events 7136 21116 Using selector: SelectSelector
+INFO 2026-05-30 17:21:53,244 autoreload 7136 21116 Watching for file changes with StatReloader
+INFO 2026-05-30 17:24:16,801 autoreload 7136 21116 C:\Users\leno\sasl\backend\gigs\serializers.py changed, reloading.
+DEBUG 2026-05-30 17:24:18,324 selector_events 18296 26128 Using selector: SelectSelector
+INFO 2026-05-30 17:24:23,225 autoreload 18296 26128 Watching for file changes with StatReloader
+DEBUG 2026-05-30 17:24:34,966 selector_events 3456 19440 Using selector: SelectSelector
+DEBUG 2026-05-30 17:24:48,548 selector_events 23280 13600 Using selector: SelectSelector
+DEBUG 2026-05-30 17:24:59,906 selector_events 7568 15632 Using selector: SelectSelector
+DEBUG 2026-05-30 17:25:05,361 selector_events 26452 6904 Using selector: SelectSelector
+INFO 2026-05-30 17:25:09,285 autoreload 26452 6904 Watching for file changes with StatReloader
+INFO 2026-05-30 17:25:13,115 server 26452 11860 HTTP/2 support not enabled (install the http2 and tls Twisted extras)
+INFO 2026-05-30 17:25:13,117 server 26452 11860 Configuring endpoint tcp:port=8000:interface=127.0.0.1
+INFO 2026-05-30 17:25:13,119 server 26452 11860 Listening on TCP address 127.0.0.1:8000

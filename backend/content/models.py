@@ -161,6 +161,17 @@ class ReelCommentReply(models.Model):
         ordering = ['created_at']
 
 
+
+class ReelCommentReplyLike(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    reply = models.ForeignKey('ReelCommentReply', on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['reply', 'user']
+
+
 # Add to existing Notification model
 class Notification(models.Model):
     TYPE_CHOICES = (

@@ -127,7 +127,7 @@ export default function Streaming() {
       setThumbnailFile(null); setThumbnailPreview(null);
       
       // Sync with server after a short delay
-      setTimeout(() => fetchStreams(), 500);
+      
     } catch (err: any) {
       toast.error(err.response?.data?.error || t('Failed to start stream'));
     }

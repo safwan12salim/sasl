@@ -3,7 +3,7 @@ Sasl - Social Asynchronous Sharing Layer
 Gig Central serializers with milestones, reviews, portfolio
 """
 from rest_framework import serializers
-from .models import Gig, Milestone, GigReview, Dispute, SkillBadge, Portfolio
+from .models import Gig, GigChatMessage, Milestone, GigReview, Dispute, SkillBadge, Portfolio
 from users.serializers import UserProfileSerializer
 from django.db.models import Avg
 
@@ -97,3 +97,27 @@ class GigSerializer(serializers.ModelSerializer):
 
     def get_review_count(self, obj):
         return obj.reviews.count()
+    
+
+
+
+class GigChatMessageSerializer(serializers.ModelSerializer):
+    sender_name = serializers.ReadOnlyField(source='sender.username')
+    sender_avatar = serializers.SerializerMethodField()
+    image_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = GigChatMessage
+        fields = ['id', 'gig', 'sender', 'sender_name', 'sender_avatar', 'text', 'image', 'image_url', 'created_at']
+        read_only_fields = ['sender', 'created_at']
+
+    def get_sender_avatar(self, obj):
+        if obj.sender.avatar and (request := self.context.get('request')):
+            return request.build_absolute_uri(obj.sender.avatar.url)
+        return None
+
+    def get_image_url(self, obj):
+        if obj.image and (request := self.context.get('request')):
+            return request.build_absolute_uri(obj.image.url)
+        return None
+

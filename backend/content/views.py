@@ -21,7 +21,7 @@ from sasl import settings
 
 from .models import (
     Post, PostLike, Comment, Reel, ReelLike, ReelComment, ReelCommentLike, Share, Story, Notification,
-    Poll, PollOption, PollVote, Report, ReelCommentReply
+    Poll, PollOption, PollVote, Report, ReelCommentReply, ReelCommentReplyLike
 )
 
 from .serializers import (
@@ -479,3 +479,24 @@ class ReelViewSet(viewsets.ModelViewSet):
             comment=comment, user=request.user, text=text
         )
         return Response(ReelCommentReplySerializer(reply).data, status=201)
+
+
+
+    @action(detail=True, methods=['post'])
+    def like_reply(self, request, pk=None):
+        reel = self.get_object()
+        reply_id = request.data.get('reply_id')
+        if not reply_id:
+            return Response({'error': 'reply_id required'}, status=400)
+        try:
+            reply = ReelCommentReply.objects.get(id=reply_id, comment__reel=reel)
+        except ReelCommentReply.DoesNotExist:
+            return Response({'error': 'Reply not found'}, status=404)
+        
+        like, created = ReelCommentReplyLike.objects.get_or_create(
+            reply=reply, user=request.user
+        )
+        if not created:
+            like.delete()
+            return Response({'status': 'unliked', 'likes_count': ReelCommentReplyLike.objects.filter(reply=reply).count()})
+        return Response({'status': 'liked', 'likes_count': ReelCommentReplyLike.objects.filter(reply=reply).count()})    

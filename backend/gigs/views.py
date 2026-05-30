@@ -9,10 +9,10 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.db import transaction
 from django.db.models import Q, Avg, Count
-from .models import Gig, Milestone, GigReview, Dispute, SkillBadge, Portfolio
+from .models import Gig, Milestone, GigReview, Dispute, SkillBadge, Portfolio, GigChatMessage
 from .serializers import (
     GigSerializer, MilestoneSerializer, GigReviewSerializer,
-    DisputeSerializer, SkillBadgeSerializer, PortfolioSerializer
+    DisputeSerializer, SkillBadgeSerializer, PortfolioSerializer, GigChatMessageSerializer
 )
 from monetization.services import process_marketplace_purchase
 from notifications.services import create_notification
