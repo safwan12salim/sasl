@@ -416,44 +416,76 @@ const Feed: React.FC = () => {
     const [showComments, setShowComments] = useState(false);
     return (
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        className="card mb-4"
+        whileHover={{ y: -2 }}
+        className="glass-card p-5 mb-4 transition-all duration-300"
       >
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sasl-green to-sasl-orange flex items-center justify-center text-white font-bold">
-            {post.author.username[0].toUpperCase()}
+        <div className="flex items-center gap-3 mb-3">
+          <div className="relative">
+            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-sasl-green to-sasl-orange flex items-center justify-center text-white font-bold text-sm">
+              {post.author.username[0].toUpperCase()}
+            </div>
+            <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white" />
           </div>
           <div>
-            <p className="font-semibold">{post.author.username}</p>
-            <p className="text-xs text-gray-500">{new Date(post.created_at).toLocaleDateString()}</p>
+            <p className="font-semibold text-gray-900 dark:text-white">{post.author.username}</p>
+            <p className="text-xs text-gray-500">{new Date(post.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
           </div>
         </div>
-        <p className="mb-3">{post.text}</p>
+        
+        <p className="mb-3 text-gray-800 dark:text-gray-200 leading-relaxed">{post.text}</p>
+        
         {post.media_url && (
-          <img src={post.media_url} className="rounded-xl mb-3 max-h-80 w-full object-cover" alt="" loading="lazy" />
+          <div className="rounded-xl overflow-hidden mb-3 relative group">
+            <img src={post.media_url} className="w-full max-h-96 object-cover transition-transform duration-500 group-hover:scale-[1.02]" alt="" loading="lazy" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          </div>
         )}
+        
         {post.poll && <PollSection poll={post.poll} postId={post.id} />}
-        <div className="flex justify-between text-gray-500 mb-2">
-          <button onClick={() => handleLike(post.id)} className="flex items-center gap-1 hover:text-red-500">
-            <Heart className={`w-5 h-5 ${post.liked_by_me ? 'fill-red-500 text-red-500' : ''}`} />
-            {post.likes_count}
-          </button>
-          <button onClick={() => setShowComments(!showComments)} className="flex items-center gap-1 hover:text-blue-500">
-            <MessageCircle className="w-5 h-5" /> {post.comments_count}
-            {showComments ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-          </button>
-          <button onClick={() => handleShare(post.id)} className="flex items-center gap-1 hover:text-green-500">
-            <Share2 className="w-5 h-5" /> {post.shares_count}
-          </button>
+        
+        <div className="flex justify-between text-gray-500 mb-2 pt-2 border-t border-gray-100 dark:border-gray-700/50">
+          <motion.button 
+            whileTap={{ scale: 0.8 }}
+            onClick={() => handleLike(post.id)} 
+            className="flex items-center gap-1.5 hover:text-red-500 transition-colors group"
+          >
+            <Heart className={`w-5 h-5 transition-all ${post.liked_by_me ? 'fill-red-500 text-red-500 like-burst' : 'group-hover:scale-110'}`} />
+            <span className="text-sm font-medium">{post.likes_count}</span>
+          </motion.button>
+          <motion.button 
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setShowComments(!showComments)} 
+            className="flex items-center gap-1.5 hover:text-blue-500 transition-colors"
+          >
+            <MessageCircle className="w-5 h-5" /> 
+            <span className="text-sm font-medium">{post.comments_count}</span>
+          </motion.button>
+          <motion.button 
+            whileTap={{ scale: 0.95 }}
+            onClick={() => handleShare(post.id)} 
+            className="flex items-center gap-1.5 hover:text-green-500 transition-colors"
+          >
+            <Share2 className="w-5 h-5" /> 
+            <span className="text-sm font-medium">{post.shares_count}</span>
+          </motion.button>
           {post.author.username === user?.username && (
-            <button onClick={() => handleDelete(post.id)} className="text-red-500 text-xs">{t('delete')}</button>
+            <button onClick={() => handleDelete(post.id)} className="text-red-400 hover:text-red-600 text-xs font-medium transition-colors">{t('delete')}</button>
           )}
         </div>
+        
         <AnimatePresence>
           {showComments && (
-            <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} exit={{ height: 0 }}>
-              <CommentThread postId={post.id} />
+            <motion.div 
+              initial={{ height: 0, opacity: 0 }} 
+              animate={{ height: 'auto', opacity: 1 }} 
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="pt-3 border-t border-gray-100 dark:border-gray-700/50">
+                <CommentThread postId={post.id} />
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

@@ -50,17 +50,15 @@ export default function NotificationBell() {
     };
     
     const subscription = subscribeToNotifications((payload) => {
-    console.log(t('New notification:'), payload.new);
-    // Add to notifications list
-    setNotifications(prev => [payload.new, ...prev]);
-  });
+      setNotifications(prev => [payload.new, ...prev]);
+      setUnreadCount(prev => prev + 1);
+    });
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       subscription.unsubscribe();
       document.removeEventListener('mousedown', handleClickOutside);
       wsRef.current?.close();
-      subscription.unsubscribe();
     };
   }, [user]);
 
@@ -70,15 +68,11 @@ export default function NotificationBell() {
     const ws = new WebSocket(wsUrl);
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      if (data.type === t('unread_count')) {
-        setUnreadCount(data.count);
-      } else if (data.type === t('new_notification')) {
+      if (data.type === 'unread_count') setUnreadCount(data.count);
+      else if (data.type === 'new_notification') {
         setNotifications(prev => [data.notification, ...prev]);
         setUnreadCount(prev => prev + 1);
-        // Show toast for new notification
-        toast(data.notification.message, {
-          icon: iconMap[data.notification.type] || '🔔',
-        });
+        toast(data.notification.message, { icon: iconMap[data.notification.type] || '🔔' });
       }
     };
     wsRef.current = ws;
@@ -89,12 +83,8 @@ export default function NotificationBell() {
     try {
       const res = await api.get('/content/notifications/');
       setNotifications(res.data.results || res.data || []);
-      setUnreadCount(notifications.filter(n => !n.is_read).length);
-    } catch (err) {
-      // silent
-    } finally {
-      setLoading(false);
-    }
+      setUnreadCount((res.data.results || res.data || []).filter((n: Notification) => !n.is_read).length);
+    } catch {} finally { setLoading(false); }
   };
 
   const markAsRead = async (id: string) => {
@@ -116,41 +106,40 @@ export default function NotificationBell() {
   const handleClick = (notification: Notification) => {
     if (!notification.is_read) markAsRead(notification.id);
     setOpen(false);
-    if (notification.post_id) {
-      navigate(`/post/${notification.post_id}`);
-    }
+    if (notification.post_id) navigate(`/post/${notification.post_id}`);
   };
 
   return (
     <div className="relative" ref={panelRef}>
-      <button
+      <motion.button
+        whileTap={{ scale: 0.9 }}
         onClick={() => setOpen(!open)}
-        className="relative p-2 rounded-full hover:bg-gray-100 transition-colors"
+        className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
       >
-        <Bell size={20} />
+        <Bell size={20} className="text-gray-600 dark:text-gray-300" />
         {unreadCount > 0 && (
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold"
+            className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs min-w-[20px] h-5 rounded-full flex items-center justify-center font-bold px-1 shadow-lg"
           >
             {unreadCount > 99 ? '99+' : unreadCount}
           </motion.span>
         )}
-      </button>
+      </motion.button>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-gray-100 z-50 overflow-hidden"
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            className="absolute right-0 mt-2 w-80 glass-card rounded-2xl shadow-2xl z-50 overflow-hidden border border-white/50"
           >
-            <div className="flex items-center justify-between p-4 border-b">
-              <h3 className="font-bold">{t('Notifications')}</h3>
+            <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-700">
+              <h3 className="font-bold text-gray-900 dark:text-white">{t('Notifications')}</h3>
               {unreadCount > 0 && (
-                <button onClick={markAllRead} className="text-sm text-green-600 hover:underline">
+                <button onClick={markAllRead} className="text-sm text-green-600 hover:underline font-medium">
                   {t('Mark all read')}
                 </button>
               )}
@@ -170,25 +159,24 @@ export default function NotificationBell() {
                 notifications.map(notification => (
                   <motion.button
                     key={notification.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    whileHover={{ backgroundColor: 'rgba(0,168,107,0.05)' }}
                     onClick={() => handleClick(notification)}
-                    className={`w-full text-left p-4 hover:bg-gray-50 transition-colors border-b last:border-b-0 ${
-                      !notification.is_read ? 'bg-green-50/50' : ''
+                    className={`w-full text-left p-4 transition-colors border-b border-gray-50 dark:border-gray-700/50 last:border-b-0 ${
+                      !notification.is_read ? 'bg-green-50/50 dark:bg-green-900/10' : ''
                     }`}
                   >
                     <div className="flex items-start gap-3">
-                      <div className="mt-0.5">
-                        {iconMap[notification.notification_type] || <Bell size={16} />}
+                      <div className="mt-0.5 p-1.5 rounded-full bg-gray-100 dark:bg-gray-700">
+                        {iconMap[notification.notification_type] || <Bell size={16} className="text-gray-500" />}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-gray-800 line-clamp-2">{t(notification.message)}</p>
+                        <p className="text-sm text-gray-800 dark:text-gray-200 line-clamp-2">{notification.message}</p>
                         <p className="text-xs text-gray-400 mt-1">
-                          {new Date(notification.created_at).toLocaleDateString()}
+                          {new Date(notification.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                         </p>
                       </div>
                       {!notification.is_read && (
-                        <span className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0 mt-2" />
+                        <span className="w-2.5 h-2.5 bg-green-500 rounded-full flex-shrink-0 mt-2 shadow-lg shadow-green-300" />
                       )}
                     </div>
                   </motion.button>
