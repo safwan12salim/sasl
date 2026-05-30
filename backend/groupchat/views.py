@@ -26,11 +26,13 @@ class GroupChatViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['get'])
     def messages(self, request, pk=None):
         group = self.get_object()
+        # Auto-join public groups on first message fetch
+        if not group.is_private and request.user not in group.members.all():
+            group.members.add(request.user)
         if request.user not in group.members.all():
-         return Response({'error': 'Not a member'}, status=403)
+            return Response({'error': 'Not a member'}, status=403)
         msgs = group.messages.all().order_by('created_at')[:100]
         return Response(GroupMessageSerializer(msgs, many=True).data)
-
     @action(detail=True, methods=['post'])
     def send_message(self, request, pk=None):
         group = self.get_object()

@@ -116,7 +116,7 @@ export default function Streaming() {
       });
       
       // Add to local state immediately — DON'T call fetchStreams() yet
-      setStreams(prev => {
+       setStreams(prev => {
         const exists = prev.find(s => s.id === res.data.id);
         if (exists) return prev;
         return [res.data, ...prev];

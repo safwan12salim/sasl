@@ -34,6 +34,8 @@ export default function Reels() {
   const [reelComments, setReelComments] = useState<Record<string, any[]>>({});
   const [showComments, setShowComments] = useState<string | null>(null);
   const [commentTexts, setCommentTexts] = useState<Record<string, string>>({});
+  const [replyTexts, setReplyTexts] = useState<Record<string, string>>({});
+  const [replyingTo, setReplyingTo] = useState<string | null>(null);
 
   const fetchReels = useCallback(async () => {
     setLoading(true);
@@ -94,10 +96,26 @@ export default function Reels() {
     } catch { toast.error('Comment failed'); }
   };
 
-  const fetchReelComments = async (reelId: string) => {
-    try { const res = await api.get(`/content/reels/${reelId}/comments/`); setReelComments(prev => ({ ...prev, [reelId]: res.data || [] })); } catch {}
+  
+   
+    const handleReply = async (reelId: string, commentId: string) => {
+    const text = replyTexts[commentId] || '';
+    if (!text.trim()) return;
+    try {
+      await api.post(`/content/reels/${reelId}/reply_comment/`, { comment_id: commentId, text });
+      setReplyTexts(prev => ({ ...prev, [commentId]: '' }));
+      setReplyingTo(null);
+      toast.success('Reply added!');
+      fetchReelComments(reelId);
+    } catch { toast.error('Reply failed'); }
   };
 
+  const fetchReelComments = async (reelId: string) => {
+    try { 
+      const res = await api.get(`/content/reels/${reelId}/comments/`); 
+      setReelComments(prev => ({ ...prev, [reelId]: res.data || [] })); 
+    } catch {}
+  };
   const uploadReel = async () => {
     if (!reelFile) return toast.error(t('Select a video'));
     setUploading(true);
@@ -151,12 +169,35 @@ export default function Reels() {
                 <div className="mt-3 max-h-56 overflow-y-auto bg-black/80 rounded-xl p-3 relative">
                   <button onClick={(e) => { e.stopPropagation(); setShowComments(null); }} className="absolute top-2 right-2 text-white/60 hover:text-white text-lg leading-none">✕</button>
                   <p className="text-white text-xs font-semibold mb-2">Comments</p>
-                  {(reelComments[reel.id] || []).map((c: any, i: number) => (
-                    <div key={c.id || i} className="flex items-start gap-2 mb-2 pr-6">
-                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">{c.user?.username?.[0]?.toUpperCase() || 'U'}</div>
-                      <div className="flex-1"><span className="text-white text-xs font-semibold">{c.user?.username || 'user'}</span><span className="text-white/70 text-xs ml-2">{c.text}</span></div>
-                      <button onClick={async (e) => { e.stopPropagation(); try { await api.post(`/content/reels/${reel.id}/like_comment/`, { comment_id: c.id }); fetchReelComments(reel.id); } catch {} }}
-                        className={`text-xs flex-shrink-0 transition-colors ${c.liked_by_me ? 'text-red-500' : 'text-white/40 hover:text-red-400'}`}>❤️ {c.likes_count || ''}</button>
+                                        {(reelComments[reel.id] || []).map((c: any, i: number) => (
+                    <div key={c.id || i} className="mb-2 pr-6">
+                      <div className="flex items-start gap-2">
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">{c.user?.username?.[0]?.toUpperCase() || 'U'}</div>
+                        <div className="flex-1">
+                          <span className="text-white text-xs font-semibold">{c.user?.username || 'user'}</span>
+                          <span className="text-white/70 text-xs ml-2">{c.text}</span>
+                          <button onClick={(e) => { e.stopPropagation(); setReplyingTo(replyingTo === c.id ? null : c.id); setReplyTexts(prev => ({ ...prev, [c.id]: '' })); }}
+                            className="text-white/40 text-[10px] ml-2 hover:text-white/80">Reply</button>
+                        </div>
+                        <button onClick={async (e) => { e.stopPropagation(); try { await api.post(`/content/reels/${reel.id}/like_comment/`, { comment_id: c.id }); fetchReelComments(reel.id); } catch {} }}
+                          className={`text-xs flex-shrink-0 transition-colors ${c.liked_by_me ? 'text-red-500' : 'text-white/40 hover:text-red-400'}`}>❤️ {c.likes_count || ''}</button>
+                      </div>
+                      {/* Replies */}
+                      {(c.replies || []).map((r: any) => (
+                        <div key={r.id} className="flex items-start gap-2 ml-8 mt-1">
+                          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-gray-400 to-gray-500 flex items-center justify-center text-white text-[10px] font-bold flex-shrink-0">{r.user?.username?.[0]?.toUpperCase() || 'U'}</div>
+                          <div><span className="text-white text-[10px] font-semibold">{r.user?.username || 'user'}</span><span className="text-white/60 text-[10px] ml-1">{r.text}</span></div>
+                        </div>
+                      ))}
+                      {/* Reply Input */}
+                      {replyingTo === c.id && (
+                        <div className="flex gap-1 ml-8 mt-1">
+                          <input value={replyTexts[c.id] || ''} onChange={e => setReplyTexts(prev => ({ ...prev, [c.id]: e.target.value }))}
+                            placeholder="Reply..." className="flex-1 bg-white/10 text-white px-2 py-1 rounded-full text-[10px] border border-white/10 outline-none"
+                            onKeyDown={e => e.key === 'Enter' && handleReply(reel.id, c.id)} />
+                          <button onClick={() => handleReply(reel.id, c.id)} className="text-green-400 text-[10px] font-semibold">Send</button>
+                        </div>
+                      )}
                     </div>
                   ))}
                   {(reelComments[reel.id] || []).length === 0 && <p className="text-white/50 text-xs text-center py-2">No comments yet</p>}

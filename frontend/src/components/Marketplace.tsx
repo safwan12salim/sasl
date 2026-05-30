@@ -267,11 +267,9 @@ export default function Marketplace() {
               <List size={18} />
             </button>
           </div>
-          {user?.is_seller && (
-            <button onClick={() => setShowSellForm(!showSellForm)} className="btn-primary flex items-center gap-2">
-              <PlusCircle size={18} /> {showSellForm ? t('cancel') : t('sell_item')}
-            </button>
-          )}
+           <button onClick={() => setShowSellForm(!showSellForm)} className="btn-primary flex items-center gap-2">
+            <PlusCircle size={18} /> {showSellForm ? t('cancel') : t('sell_item')}
+          </button>
         </div>
       </div>
 
